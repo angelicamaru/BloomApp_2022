@@ -1,0 +1,26 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+     <ion-navbar>
+          <ion-title>Ingresar</ion-title>
+     </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+     <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+          <ion-item>
+               <ion-label stacked>Número de identificación</ion-label>
+               <ion-input formControlName="email" type="email" placeholder="Número de identificación" >
+               </ion-input>
+          </ion-item>
+          <button ion-button block type="submit" [disabled]="!loginForm.valid">Ingresar</button>
+     </form>
+     <button ion-button block clear (click)="goToSignup()"> Registrase</button>
+
+</ion-content>
