@@ -1,53 +1,49 @@
-<!--
-  Generated template for the SignupPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-     <ion-navbar>
-          <ion-title>Registro</ion-title>
+<ion-header no-border>
+     <ion-navbar transparent>
      </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="login-view" style="background:url(assets/imgs/81ItvmQTHKUEhsME1Yw4_bloomBG.jpg) no-repeat center;background-size:cover;">
+
+        <div class="row form-wrapper">
+        <div class="col">
+            <div class="bgdiv">
+                <img class="background" src="assets/imgs/bloomLogo.png" />
+            </div>
+            <div class="row form-heading">
+                <div class="col col-center">
+                    <h3 class="form-title">ingresa a tu cuenta</h3>
+                </div>
+            </div>
+
      <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
-          <ion-item>
-               <ion-label stacked>Número</ion-label>
+          <ion-item class="bloomitem">
                <ion-input formControlName="email" type="word" placeholder="Número de identificación" ></ion-input>
           </ion-item>
-          <ion-item>
-               <ion-label stacked>Tipo</ion-label>
+          <ion-item class="bloomitem">
                <ion-select formControlName="tipo" placeholder="Escoja el tipo de identificación" >
                 <ion-option value="cedula">Cédula</ion-option>
                 <ion-option value="pasaporte">Pasaporte</ion-option>
             </ion-select>
           </ion-item>
-          <ion-item>
-               <ion-label stacked>Nombre</ion-label>
+          <ion-item class="bloomitem">
                <ion-input formControlName="nombre" type="firstName" placeholder="Nombre" ></ion-input>
           </ion-item>
-          <ion-item>
-               <ion-label stacked>Apellido</ion-label>
+          <ion-item class="bloomitem">
                <ion-input formControlName="apellido" type="lastName" placeholder="Apellido" ></ion-input>
           </ion-item>
-          <ion-item>
-               <ion-label stacked>Fecha de nacimiento</ion-label>
-               <ion-datetime displayFormat="MMM DD, YYYY" formControlName="fecha" [(ngModel)]="myDate"></ion-datetime>
+          <ion-item class="bloomitem">
+               <ion-datetime displayFormat="MMM DD, YYYY" formControlName="fecha" [(ngModel)]="myDate" placeholder="Fecha de nacimiento"></ion-datetime>
           </ion-item>
-          <ion-item>
-               <ion-label stacked>Cargo</ion-label>
+          <ion-item class="bloomitem">
                <ion-select formControlName="cargo" placeholder="Escoja su cargo" >
                 <ion-option value="operario">Operario</ion-option>
                 <ion-option value="director">Director</ion-option>
                 <ion-option value="practicante">Practicante</ion-option>
             </ion-select>
           </ion-item>
-          <ion-item>
-               <ion-label stacked>Nivel de educación</ion-label>
+          <ion-item class="bloomitem">
                <ion-select formControlName="nivel" placeholder="Escoja su nivel de educación completado" >
                 <ion-option value="ninguno">Ninguno</ion-option>
                 <ion-option value="primaria">Primaria</ion-option>
@@ -57,6 +53,8 @@
             </ion-select>
           </ion-item>
 
-          <button ion-button block type="submit" [disabled]="!signupForm.valid">Registrarse</button>
+          <button ion-button large class="login button button-block" type="submit" [disabled]="!signupForm.valid">Registrarse</button>
      </form>
+            </div>
+        </div>
 </ion-content>

@@ -34,7 +34,7 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #005C86,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
@@ -86,3 +86,13 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$button-md-text-transform:(none);
+$text-input-placeholder-color:(white);
+$datetime-md-placeholder-color:(white);
+$select-md-placeholder-color:(white);
+$select-md-icon-color:(white);
+$label-md-text-color:(white);
+$toolbar-md-button-color:(white);
+$toolbar-md-title-text-color:(white);
+$bloom-background: linear-gradient(to bottom, rgba(249,161,28,1) 0%, rgba(247,124,30,1) 100%);

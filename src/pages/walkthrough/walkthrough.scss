@@ -1,0 +1,90 @@
+page-walkthrough
+{
+  background-color: navajowhite;
+
+  .top-content
+  {
+    height:100%;
+
+    .slider
+    {
+      height: 100%;
+
+      .slider-slide
+      {
+
+      }
+    }
+
+    .slide-content
+    {
+      height: 100%;
+      text-align:center;
+      padding-top: 40px;
+
+      .slide-image
+      {
+        width:80%;
+
+      }
+    }
+
+    .slide-h
+    {
+      color: #005C86;
+      font-weight: 400;
+    }
+
+    .slide-p
+    {
+      color: #005C86;
+      font-size: 16px;
+    }
+
+    .slider-pager
+    {
+      bottom: 2px;
+    }
+
+    .slider-pager .slider-pager-page i
+    {
+      color: #005C86;
+    }
+
+    .slider-pager .slider-pager-page.active i
+    {
+      color: #005C86;
+    }
+  }
+
+  .bottom-content
+  {
+    height:15%;
+    margin: 0px;
+
+    .login,
+    .sign-up
+    {
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .login
+    {
+      color: #005C86;
+      background-color: #005C86;
+      border-color: #005C86;
+    }
+
+    .sign-up
+    {
+      color: #005C86;
+      background-color: #005C86;
+      border-color: #005C86;
+    }
+  }
+
+
+}
+

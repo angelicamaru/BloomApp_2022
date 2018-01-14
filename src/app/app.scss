@@ -14,3 +14,980 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+html {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: sans-serif;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+  line-height: 1; }
+
+/**
+ * Remove default outlines.
+ */
+a,
+button,
+:focus,
+a:focus,
+button:focus,
+a:active,
+a:hover {
+  outline: 0; }
+
+/* *
+ * Remove tap highlight color
+ */
+a {
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; }
+  a[href]:hover {
+    cursor: pointer; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-size: 1em;
+  font-family: monospace, serif; }
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap; }
+
+/**
+ * Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  position: relative;
+  vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+  border: 1px solid #c0c0c0; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  padding: 0;
+  /* 2 */
+  border: 0;
+  /* 1 */ }
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ * 4. Remove any default :focus styles
+ * 5. Make sure webkit font smoothing is being inherited
+ * 6. Remove default gradient in Android Firefox / FirefoxOS
+ */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  /* 3 */
+  font-size: 100%;
+  /* 2 */
+  font-family: inherit;
+  /* 1 */
+  outline-offset: 0;
+  /* 4 */
+  outline-style: none;
+  /* 4 */
+  outline-width: 0;
+  /* 4 */
+  -webkit-font-smoothing: inherit;
+  /* 5 */
+  background-image: none;
+  /* 6 */ }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `importnt` in
+ * the UA stylesheet.
+ */
+button,
+input {
+  line-height: normal; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *  and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *  `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  /* 3 */
+  -webkit-appearance: button;
+  /* 2 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *  (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+  /* 1 */ }
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0; }
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+img {
+  -webkit-user-drag: none; }
+.slider {
+  position: relative;
+  visibility: hidden;
+  overflow: hidden; }
+
+.slider-slides {
+  position: relative;
+  height: 100%; }
+
+.slider-slide {
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  vertical-align: top; }
+
+.slider-slide-image > img {
+  width: 100%; }
+
+.slider-pager {
+  position: absolute;
+  bottom: 20px;
+  z-index: 1;
+  width: 100%;
+  height: 15px;
+  text-align: center; }
+  .slider-pager .slider-pager-page {
+    display: inline-block;
+    margin: 0px 3px;
+    width: 15px;
+    color: #000;
+    text-decoration: none;
+    opacity: 0.3; }
+    .slider-pager .slider-pager-page.active {
+      -webkit-transition: opacity 0.4s ease-in;
+      transition: opacity 0.4s ease-in;
+      opacity: 1; }
+
+.slider-slide.ng-enter, .slider-slide.ng-leave, .slider-slide.ng-animate,
+.slider-pager-page.ng-enter,
+.slider-pager-page.ng-leave,
+.slider-pager-page.ng-animate {
+  -webkit-transition: none !important;
+  transition: none !important; }
+
+.slider-slide.ng-animate,
+.slider-pager-page.ng-animate {
+  -webkit-animation: none 0s;
+  animation: none 0s; }
+.button {
+  border-color: transparent;
+  background-color: #f8f8f8;
+  color: #444;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0 12px;
+  min-width: 52px;
+  min-height: 47px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  vertical-align: top;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 42px;
+  cursor: pointer; }
+  .button:hover {
+    color: #444;
+    text-decoration: none; }
+  .button.active, .button.activated {
+    background-color: #e5e5e5; }
+  .button:after {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    bottom: -6px;
+    left: -6px;
+    content: ' '; }
+  .button .icon {
+    vertical-align: top;
+    pointer-events: none; }
+  .button .icon:before, .button.icon:before, .button.icon-left:before, .button.icon-right:before {
+    display: inline-block;
+    padding: 0 0 1px 0;
+    vertical-align: inherit;
+    font-size: 24px;
+    line-height: 41px;
+    pointer-events: none; }
+  .button.icon-left:before {
+    float: left;
+    padding-right: .2em;
+    padding-left: 0; }
+  .button.icon-right:before {
+    float: right;
+    padding-right: 0;
+    padding-left: .2em; }
+  .button.button-block, .button.button-full {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  .button.button-light {
+    border-color: transparent;
+    background-color: #fff;
+    color: #444; }
+    .button.button-light:hover {
+      color: #444;
+      text-decoration: none; }
+    .button.button-light.active, .button.button-light.activated {
+      background-color: #fafafa; }
+    .button.button-light.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #ddd; }
+    .button.button-light.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-light.button-outline {
+      border-color: #ddd;
+      background: transparent;
+      color: #ddd; }
+      .button.button-light.button-outline.active, .button.button-light.button-outline.activated {
+        background-color: #ddd;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-stable {
+    border-color: transparent;
+    background-color: #f8f8f8;
+    color: #444; }
+    .button.button-stable:hover {
+      color: #444;
+      text-decoration: none; }
+    .button.button-stable.active, .button.button-stable.activated {
+      background-color: #e5e5e5; }
+    .button.button-stable.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #b2b2b2; }
+    .button.button-stable.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-stable.button-outline {
+      border-color: #b2b2b2;
+      background: transparent;
+      color: #b2b2b2; }
+      .button.button-stable.button-outline.active, .button.button-stable.button-outline.activated {
+        background-color: #b2b2b2;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-positive {
+    border-color: transparent;
+    background-color: #FFCE00;
+    color: #fff; }
+    .button.button-positive:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-positive.active, .button.button-positive.activated {
+      background-color: #cca500; }
+    .button.button-positive.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #FFCE00; }
+    .button.button-positive.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-positive.button-outline {
+      border-color: #FFCE00;
+      background: transparent;
+      color: #FFCE00; }
+      .button.button-positive.button-outline.active, .button.button-positive.button-outline.activated {
+        background-color: #FFCE00;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-calm {
+    border-color: transparent;
+    background-color: #11c1f3;
+    color: #fff; }
+    .button.button-calm:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-calm.active, .button.button-calm.activated {
+      background-color: #0a9dc7; }
+    .button.button-calm.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #11c1f3; }
+    .button.button-calm.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-calm.button-outline {
+      border-color: #11c1f3;
+      background: transparent;
+      color: #11c1f3; }
+      .button.button-calm.button-outline.active, .button.button-calm.button-outline.activated {
+        background-color: #11c1f3;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-assertive {
+    border-color: transparent;
+    background-color: #FFCE00;
+    color: #fff; }
+    .button.button-assertive:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-assertive.active, .button.button-assertive.activated {
+      background-color: #cca500; }
+    .button.button-assertive.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #FFCE00; }
+    .button.button-assertive.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-assertive.button-outline {
+      border-color: #FFCE00;
+      background: transparent;
+      color: #FFCE00; }
+      .button.button-assertive.button-outline.active, .button.button-assertive.button-outline.activated {
+        background-color: #FFCE00;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-balanced {
+    border-color: transparent;
+    background-color: #33cd5f;
+    color: #fff; }
+    .button.button-balanced:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-balanced.active, .button.button-balanced.activated {
+      background-color: #28a54c; }
+    .button.button-balanced.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #33cd5f; }
+    .button.button-balanced.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-balanced.button-outline {
+      border-color: #33cd5f;
+      background: transparent;
+      color: #33cd5f; }
+      .button.button-balanced.button-outline.active, .button.button-balanced.button-outline.activated {
+        background-color: #33cd5f;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-energized {
+    border-color: transparent;
+    background-color: #ffc900;
+    color: #fff; }
+    .button.button-energized:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-energized.active, .button.button-energized.activated {
+      background-color: #e6b500; }
+    .button.button-energized.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #ffc900; }
+    .button.button-energized.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-energized.button-outline {
+      border-color: #ffc900;
+      background: transparent;
+      color: #ffc900; }
+      .button.button-energized.button-outline.active, .button.button-energized.button-outline.activated {
+        background-color: #ffc900;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-royal {
+    border-color: transparent;
+    background-color: #886aea;
+    color: #fff; }
+    .button.button-royal:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-royal.active, .button.button-royal.activated {
+      background-color: #6b46e5; }
+    .button.button-royal.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #886aea; }
+    .button.button-royal.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-royal.button-outline {
+      border-color: #886aea;
+      background: transparent;
+      color: #886aea; }
+      .button.button-royal.button-outline.active, .button.button-royal.button-outline.activated {
+        background-color: #886aea;
+        box-shadow: none;
+        color: #fff; }
+  .button.button-dark {
+    border-color: transparent;
+    background-color: #444;
+    color: #fff; }
+    .button.button-dark:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-dark.active, .button.button-dark.activated {
+      background-color: #262626; }
+    .button.button-dark.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #444; }
+    .button.button-dark.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-dark.button-outline {
+      border-color: #444;
+      background: transparent;
+      color: #444; }
+      .button.button-dark.button-outline.active, .button.button-dark.button-outline.activated {
+        background-color: #444;
+        box-shadow: none;
+        color: #fff; }
+
+.button-small {
+  padding: 2px 4px 1px;
+  min-width: 28px;
+  min-height: 30px;
+  font-size: 12px;
+  line-height: 26px; }
+  .button-small .icon:before, .button-small.icon:before, .button-small.icon-left:before, .button-small.icon-right:before {
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 3px; }
+
+.button-large {
+  padding: 0 16px;
+  min-width: 68px;
+  min-height: 59px;
+  font-size: 20px;
+  line-height: 53px; }
+  .button-large .icon:before, .button-large.icon:before, .button-large.icon-left:before, .button-large.icon-right:before {
+    padding-bottom: 2px;
+    font-size: 32px;
+    line-height: 51px; }
+
+.button-icon {
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s;
+  padding: 0 6px;
+  min-width: initial;
+  border-color: transparent;
+  background: none; }
+  .button-icon.button.active, .button-icon.button.activated {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    opacity: 0.8; }
+  .button-icon .icon:before, .button-icon.icon:before {
+    font-size: 32px; }
+
+.button-clear {
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s;
+  padding: 0 6px;
+  max-height: 42px;
+  border-color: transparent;
+  background: none;
+  box-shadow: none; }
+  .button-clear.button-clear {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #b2b2b2; }
+  .button-clear.button-icon {
+    border-color: transparent;
+    background: none; }
+  .button-clear.active, .button-clear.activated {
+    opacity: 0.8; }
+
+.button-outline {
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s;
+  background: none;
+  box-shadow: none; }
+  .button-outline.button-outline {
+    border-color: #b2b2b2;
+    background: transparent;
+    color: #b2b2b2; }
+    .button-outline.button-outline.active, .button-outline.button-outline.activated {
+      background-color: #b2b2b2;
+      box-shadow: none;
+      color: #fff; }
+
+.padding > .button.button-block:first-child {
+  margin-top: 0; }
+
+.button-block {
+  display: block;
+  clear: both; }
+  .button-block:after {
+    clear: both; }
+
+.button-full,
+.button-full > .button {
+  display: block;
+  margin-right: 0;
+  margin-left: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-radius: 0; }
+
+button.button-block,
+button.button-full,
+.button-full > button.button,
+input.button.button-block {
+  width: 100%; }
+
+a.button {
+  text-decoration: none; }
+  a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button.icon-right:before {
+    margin-top: 2px; }
+
+.button.disabled,
+.button[disabled] {
+  opacity: 1;
+  cursor: default !important;
+  pointer-events: none; }
+
+/**
+ * Button Bar
+ * --------------------------------------------------
+ */
+.button-bar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  width: 100%; }
+  .button-bar.button-bar-inline {
+    display: block;
+    width: auto;
+    *zoom: 1; }
+    .button-bar.button-bar-inline:before, .button-bar.button-bar-inline:after {
+      display: table;
+      content: "";
+      line-height: 0; }
+    .button-bar.button-bar-inline:after {
+      clear: both; }
+    .button-bar.button-bar-inline > .button {
+      width: auto;
+      display: inline-block;
+      float: left; }
+
+.button-bar > .button {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: block;
+  overflow: hidden;
+  padding: 0 16px;
+  width: 0;
+  border-width: 1px 0px 1px 1px;
+  border-radius: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+  .button-bar > .button:before,
+  .button-bar > .button .icon:before {
+    line-height: 44px; }
+  .button-bar > .button:first-child {
+    border-radius: 4px 0px 0px 4px; }
+  .button-bar > .button:last-child {
+    border-right-width: 1px;
+    border-radius: 0px 4px 4px 0px; }
+  .button-bar > .button:only-child {
+    border-radius: 4px; }
+
+.button-bar > .button-small:before,
+.button-bar > .button-small .icon:before {
+  line-height: 28px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.register-view,
+.login-view,
+.forgot-password-view {
+  background-color: black; }
+  .register-view .view-navigation .bar,
+  .login-view .view-navigation .bar,
+  .forgot-password-view .view-navigation .bar {
+    background: transparent;
+    border: none; }
+  .register-view .view-navigation .back-button *,
+  .login-view .view-navigation .back-button *,
+  .forgot-password-view .view-navigation .back-button * {
+    color: #FFFFFF; }
+  .register-view ion-content .scroll,
+  .login-view ion-content .scroll,
+  .forgot-password-view ion-content .scroll {
+    height: 100%; }
+  .register-view .form-heading,
+  .login-view .form-heading,
+  .forgot-password-view .form-heading {
+    height: 15%; }
+  .register-view .form-wrapper,
+  .login-view .form-wrapper,
+  .forgot-password-view .form-wrapper {
+    height: 60%;
+    margin: 0px; }
+  .register-view .form-title,
+  .login-view .form-title,
+  .forgot-password-view .form-title {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px; }
+  .register-view .input-fields .item,
+  .login-view .input-fields .item,
+  .forgot-password-view .input-fields .item {
+    margin: 10px 0px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 5px; }
+    .register-view .input-fields .item *,
+    .login-view .input-fields .item *,
+    .forgot-password-view .input-fields .item * {
+      color: rgba(255, 255, 255, 0.8); }
+    .register-view .input-fields .item .input-label,
+    .login-view .input-fields .item .input-label,
+    .forgot-password-view .input-fields .item .input-label {
+      font-weight: 350; }
+  .register-view .input-fields .item.item-input input,
+  .login-view .input-fields .item.item-input input,
+  .forgot-password-view .input-fields .item.item-input input {
+    flex: inherit;
+    padding-right: 0px; }
+  .register-view .message,
+  .login-view .message,
+  .forgot-password-view .message {
+    text-align: center;
+    color: #FFFFFF; }
+  .register-view .message.error:before,
+  .login-view .message.error:before,
+  .forgot-password-view .message.error:before {
+    content: '*';
+    color: #EF473A;
+    text-shadow: 1px 1px 0px rgba(180, 27, 15, 0.3);
+    margin-right: 5px;
+    font-size: 20px; }
+  .register-view .alternative-actions,
+  .login-view .alternative-actions,
+  .forgot-password-view .alternative-actions {
+    margin: 0px;
+    position: absolute;
+      right: 12px;
+    overflow: visible; }
+    .register-view .alternative-actions .button,
+    .login-view .alternative-actions .button,
+    .forgot-password-view .alternative-actions .button {
+      padding-right: 0px;
+
+      font-size: 16px;
+      color: rgba(255, 255, 255, 1); }
+  .register-view .show-hide-input,
+  .login-view .show-hide-input,
+  .forgot-password-view .show-hide-input {
+    display: inherit;
+    width: 100%; }
+  .register-view .toggle-view-anchor,
+  .login-view .toggle-view-anchor,
+  .forgot-password-view .toggle-view-anchor {
+    position: relative;
+    float: right;
+    right: 0px;
+    top: 2px;
+    height: 34px;
+    line-height: 34px;
+    padding-right: 24px; }
+    .register-view .toggle-view-anchor *,
+    .login-view .toggle-view-anchor *,
+    .forgot-password-view .toggle-view-anchor * {
+      color: white!important;
+      display: block;
+      font-size: 12px;
+      width: 45px;
+      text-align: right;
+      font-weight: 500; }
+
+.background {
+  width: 100%;
+  top: 0px; }
+
+
+.bgdiv{
+    position: relative;
+    width: 100%;
+    height: 40%;
+    padding-top: 10%;
+    margin-bottom: 10%;
+}
+
+ion-item{
+    border-color: #005C86;
+    background-color: #005C86;
+    border: 2px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.bloomitem{
+    background-color: rgba(255, 255, 255, 0.13);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 2px;
+}
+
+.bloomitem ::placeholder{
+    color: white;
+}
+
+
+.bgauthmenu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
+.walkthrough-view {
+  background-color: navajowhite; }
+  .walkthrough-view .top-content {
+    height: 85%; }
+    .walkthrough-view .top-content .slider {
+      height: 100%; }
+      .walkthrough-view .top-content .slider .slider-slide {
+        width: calc(100vw - 10px) !important; }
+    .walkthrough-view .top-content .slide-content {
+      height: 100%;
+      text-align: center;
+      padding-top: 40px; }
+      .walkthrough-view .top-content .slide-content .slide-image {
+        width: 50%;
+        margin: 40px 0px 50px; }
+    .walkthrough-view .top-content .slide-h {
+      color: #FFFFFF;
+      font-weight: 400; }
+    .walkthrough-view .top-content .slide-p {
+      color: rgba(255, 255, 255, 1);
+      font-size: 20px; }
+    .walkthrough-view .top-content .slider-pager {
+      bottom: 2px; }
+    .walkthrough-view .top-content .slider-pager .slider-pager-page i {
+      color: #005C86; }
+    .walkthrough-view .top-content .slider-pager .slider-pager-page.active i {
+      color: #005C86; }
+  .walkthrough-view .bottom-content {
+    height: 15%;
+    margin: 0px; }
+    .walkthrough-view .bottom-content .login,
+    .walkthrough-view .bottom-content .sign-up {
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 500; }
+    .walkthrough-view .bottom-content .login {
+      color: rgba(255, 255, 255, 0.9);
+
+        background-color: #005C86;
+        border-width: 2px;
+      border-color: white; }
+    .walkthrough-view .bottom-content .sign-up {
+      color: white;
+      background-color: #005C86;
+      border-color: rgba(252, 252, 252, 0.9);
+border-width: 2px;}
+
+.login-view .button.login {
+  margin-top: 30px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  background-color: #005C86;
+  border-color: rgba(252, 252, 252, 1);
+  border-width: 2px;}
+
+.register-view .button.register {
+  margin-top: 30px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  background-color: #005C86;
+  border-color: rgba(252, 252, 252, 0.9); }
+
+.forgot-password-view .button.recover {
+  margin-top: 30px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(252, 252, 252, 0.9); }
+
+.forgot-password-view .alternative-actions .sign-up {
+  float: right; }

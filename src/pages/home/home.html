@@ -1,17 +1,52 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            INICIO
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-      <button ion-button block (click)="logoutUsr()">
-    Salir
-  </button>
+<ion-content padding style="background:url(assets/imgs/bloomBGBlack.jpg) no-repeat center;background-size:cover;" class="walkthrough-view">
+    <div class="bgdiv">
+        <img  src="assets/imgs/bloomLogo.png" />
+    </div>
+    <div class="row">
+      <div class="col col-center">
+          <button class="botonJuego" style="background:url(assets/imgs/bloom-1.jpg) no-repeat center;background-size:cover;" (click)="goToExplain(juego1)">
+          </button>
+      </div>
+      <div class="col col-center">
+          <button class="botonJuego" style="background:url(assets/imgs/bloom-2.jpg) no-repeat center;background-size:cover;" (click)="goToExplain(juego2)">
+          </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-center">
+          <button class="botonJuego" style="background:url(assets/imgs/bloom-3.jpg) no-repeat center;background-size:cover;" (click)="goToExplain(juego3)">
+          </button>
+      </div>
+      <div class="col col-center">
+          <button class="botonJuego" style="background:url(assets/imgs/bloom-4.jpg) no-repeat center;background-size:cover;" (click)="goToExplain(juego4)">
+          </button>
+      </div>
+    </div>
+    <div class="row rowfinal">
+      <div class="col col-center">
+          <button class="botonJuego" style="background:url(assets/imgs/bloom-5.jpg) no-repeat center;background-size:cover;" (click)="goToExplain(juego5)">
+          </button>
+      </div>
+      <div class="col col-center">
+      </div>
+    </div>
+
+    <div class="bottom-content row">
+      <div class="col col-center">
+        <button ion-button large id="salir" class="login button button-block" (click)="goToWalkthrough()">
+      Salir
+    </button>
+      </div>
+    </div>
+
+
+
 </ion-content>

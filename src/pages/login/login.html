@@ -1,26 +1,29 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-     <ion-navbar>
-          <ion-title>Ingresar</ion-title>
-     </ion-navbar>
-
+<ion-header no-border>
+    <ion-navbar transparent>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-     <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
-          <ion-item>
-               <ion-label stacked>Número de identificación</ion-label>
-               <ion-input formControlName="email" type="email" placeholder="Número de identificación" >
-               </ion-input>
-          </ion-item>
-          <button ion-button block type="submit" [disabled]="!loginForm.valid">Ingresar</button>
-     </form>
-     <button ion-button block clear (click)="goToSignup()"> Registrase</button>
-
+<ion-content padding class="login-view" style="background:url(assets/imgs/81ItvmQTHKUEhsME1Yw4_bloomBG.jpg) no-repeat center;background-size:cover;">
+    <div class="row form-wrapper">
+        <div class="col">
+            <div class="bgdiv">
+                <img class="background" src="assets/imgs/bloomLogo.png" />
+            </div>
+            <div class="row form-heading">
+                <div class="col col-center">
+                    <h3 class="form-title">ingresa a tu cuenta</h3>
+                </div>
+            </div>
+            <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+                <ion-item class="bloomitem">
+                    <ion-input formControlName="email" type="email" placeholder="Número de identificación">
+                    </ion-input>
+                </ion-item>
+                <button ion-button large class="login button button-block" type="submit" [disabled]="!loginForm.valid">Entrar</button>
+            </form>
+            <div class="alternative-actions">
+                <button ion-button block clear class="forgot-password button button-small button-clear" (click)="goToSignup()"> Registrarse</button>
+            </div>
+        </div>
+        </div>
 </ion-content>
