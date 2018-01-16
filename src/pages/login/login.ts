@@ -53,9 +53,6 @@ export class LoginPage {
     goToSignup(): void {
         this.navCtrl.push('SignupPage');
     }
-    goToResetPassword(): void {
-        this.navCtrl.push('ResetPasswordPage');
-    }
     loginUser(): void {
         if (!this.loginForm.valid) {
             console.log(`Form is not valid yet, current value: ${this.loginForm.value}`);
