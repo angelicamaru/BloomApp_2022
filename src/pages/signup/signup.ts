@@ -2,6 +2,9 @@ import {
      Component
 } from '@angular/core';
 import {
+     HttpClient
+} from '@angular/common/http';
+import {
      Alert,
      AlertController,
      Loading,
@@ -21,6 +24,9 @@ import {
 import {
      AuthProvider
 } from '../../providers/auth/auth';
+import {
+     PruebaProvider
+} from '../../providers/prueba/prueba';
 import {
      HomePage
 } from '../home/home';
@@ -46,15 +52,16 @@ export class SignupPage {
           public loadingCtrl: LoadingController,
           public alertCtrl: AlertController,
           public authProvider: AuthProvider,
+          public pruebaProvider: PruebaProvider,
           formBuilder: FormBuilder) {
           this.signupForm = formBuilder.group({
-               cargo:[""],
-               fecha:[""],
-               nombre:[""],
-               apellido:[""],
+               cargo: [""],
+               fecha: [""],
+               nombre: [""],
+               apellido: [""],
                email: [""],
                tipo: [""],
-               nivel:[""]
+               nivel: [""]
           });
      }
 
@@ -71,11 +78,16 @@ export class SignupPage {
                const tipo: string = this.signupForm.value.tipo;
                const cargo: string = this.signupForm.value.cargo;
                const fecha: string = this.signupForm.value.fecha;
-               const nombre: string = this.signupForm.value.nombre + " "+this.signupForm.value.apellido;
+               const nombre: string = this.signupForm.value.nombre + " " + this.signupForm.value.apellido;
                const nivel: string = this.signupForm.value.nivel;
 
                this.authProvider.signupUser(email, tipo, cargo, fecha, nombre, nivel).then(user => {
                          this.loading.dismiss().then(() => {
+                              this.pruebaProvider.ponerEstado("hanoi");
+                              this.pruebaProvider.ponerEstado("stroop");
+                              this.pruebaProvider.ponerEstado("raven");
+                              this.pruebaProvider.ponerEstado("wisconsin");
+                              this.pruebaProvider.ponerEstado("token");
                               this.navCtrl.setRoot(HomePage);
                          });
                     },

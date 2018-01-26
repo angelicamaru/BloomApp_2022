@@ -8,7 +8,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AuthProvider } from '../providers/auth/auth';
 import { PruebaProvider } from '../providers/prueba/prueba';
-
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'
+///
 @NgModule({
   declarations: [
     MyApp,
@@ -16,7 +18,8 @@ import { PruebaProvider } from '../providers/prueba/prueba';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+     HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
