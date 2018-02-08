@@ -1,3 +1,58 @@
 page-juego-3 {
+     .tokenBot {
+          width: 100%;
+          position: relative;
+          padding-bottom: 100%;
+
+     }
+     .containTokenGrande{
+          padding: 10px;
+     }
+     .containTokenPeque{
+          padding: 30px;
+     }
+     .gridToken{
+
+          top: 50%;
+
+     }
+     .t1, .t9, .t13, .t20{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #107C30;
+          border: 1px solid black;
+     }
+     .t2, .t6, .t14, .t16{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: white;
+          border: 1px solid black;
+     }
+     .t3, .t7, .t15, .t17{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #E12110;
+          border: 1px solid black;
+     }
+     .t4, .t10, .t11, .t18{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #3C57A0;
+          border: 1px solid black;
+     }
+     .t5, .t8, .t12, .t19{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #EBE414;
+          border: 1px solid black;
+     }
+     .cir{
+          border-radius: 500px;
+     }
 
 }
