@@ -6,18 +6,36 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>juego-4</ion-title>
-  </ion-navbar>
+     <ion-navbar [hideBackButton]="true">
+          <ion-title>juego</ion-title>
+     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-     <body>
-     <div id="canves">
+<ion-content padding style="background:url(assets/imgs/bloomBGWhite.jpg) no-repeat center;background-size:cover;">
 
+
+     <div id="conJuego4">
+
+          <div id="juego4Up">
+               <div class="colors2" id="tarjeta">
+                    <img id="figuraTest">
+               </div>
+          </div>
+          <div id="juego4">
+               <div class="colors" id="color1" >
+                    <img src="assets/imgs/Wisconsin/redtriangle1_test.gif" style="border-radius: 30px">
+               </div>
+               <div class="colors" id="color2">
+                    <img src="assets/imgs/Wisconsin/greenstar2_test.gif" style="border-radius: 30px">
+               </div>
+               <div class="colors" id="color3">
+                    <img src="assets/imgs/Wisconsin/yellowcross3_test.gif" style="border-radius: 30px">
+               </div>
+               <div class="colors" id="color4">
+                    <img src="assets/imgs/Wisconsin/bluecircle4_test.gif" style="border-radius: 30px">
+               </div>
+          </div>
      </div>
-     </body>
-
 </ion-content>

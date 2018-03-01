@@ -25,6 +25,7 @@ export class HomePage {
 
      constructor(public navCtrl: NavController, public authData: AuthProvider, public pruebaProvider: PruebaProvider) {
 
+
      }
      logoutUsr(): void {
           this.authData.logoutUser().then(() => this.navCtrl.setRoot('WalkthroughPage'));

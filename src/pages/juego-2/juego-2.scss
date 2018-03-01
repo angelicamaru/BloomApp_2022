@@ -42,7 +42,7 @@ body {
 	@include dimensions($width:100%);
 	display: flex;
 	justify-content: center;
-	//align-items: center;
+	align-items: center;
 	overflow: hidden;
 }
 
@@ -54,13 +54,16 @@ body {
 	align-items: flex-end;
 	position: relative;
 	#score-panel {
-		@include dimensions($width: 180px, $height: 53px);
+		@include dimensions($width: 120px, $height: 53px);
 		@extend %reset;
 		position: absolute;
 		top: 0px;
 		left: 50%;
+         color: white;
+         background-color: #005C86;
 		transform: translateX(-50%);
 		font-size: 23px;
+         border-radius: 7px;
 		text-align: center;
 		li {
 			list-style: none;
@@ -85,7 +88,7 @@ body {
 }
 
 .tower {
-	@include dimensions($width: 205px, $height: 180px);
+	@include dimensions($width: 205px, $height: 120px);
 	border-bottom: 5px solid #000000;
 	border-radius: 7px;
 	position: relative;

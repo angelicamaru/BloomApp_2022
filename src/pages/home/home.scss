@@ -1,33 +1,44 @@
 page-home {
-    ion-navbar {
-    .toolbar-background {
-      background: $bloom-background;
-    }
-  }
-    ion-title {
-  position: absolute;
-  top: 0;
-  left: 0;
+     ion-navbar {
+          .toolbar-background {
+               background: $bloom-background;
+          }
+     }
+     ion-title {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+     }
+     .botonJuego {
+          width: 100%;
+          padding-bottom: 70%;
+          position: relative;
 
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-    .botonJuego{
-        width: 100%;
-        padding-bottom: 80%;
-        position: relative;
+     }
+     .bgdiv {
+          margin-bottom: 35px;
+          margin-top: -35px;
+          height: auto;
+     }
+     .row {
+          margin-bottom: -8px;
+     }
+     .row rowfinal {
+          margin-bottom: -5px;
+     }
+     .bottom-content-home {
 
-    }
+          .login {
+               border-radius: 16px;
+               font-size: 18px;
+               font-weight: 500;
+               color: white;
+               background-color: #005C86;
+               border-color: white;
+          }
 
-    .bgdiv{
-        margin-bottom: 50px;
-        height: auto;
-    }
-    .row{
-        margin-bottom: -8px;
-    }
-    .row rowfinal{
-        margin-bottom: 15px;
-    }
+     }
 }

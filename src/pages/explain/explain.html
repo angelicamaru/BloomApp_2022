@@ -1,38 +1,37 @@
 <ion-header>
-    <ion-navbar>
-    </ion-navbar>
+     <ion-navbar>
+     </ion-navbar>
 </ion-header>
 
 <ion-content padding style="background:url(assets/imgs/bloomBGBlack.jpg) no-repeat center;background-size:cover;" class="walkthrough-view">
-    <ion-card id="page2-card21">
-    <ion-list>
-      <ion-item id="page2-list-item-container2">
-        <div id="page2-markdown2" class="show-list-numbers-and-dots">
-          <h2 style="margin-top:0px;color:#000000;">
-            ¿CÓMO JUGAR?
-          </h2>
-        </div>
-      </ion-item>
-      <div style="width:100%;height:auto;margin:0px 0px;line-height:250px;background-color:#e8ebef;text-align:center;">
-          <img id="imagenJuego"/>
-      </div>
-      <div >
-        <div id="textoPrueba" class="textoJugar">
+     <div id="page2-card21">
+          <div style="margin-top: 20px">
+               <ion-item id="page2-list-item-container2">
+                    <div id="page2-markdown2" class="show-list-numbers-and-dots">
+                         <h2 style="margin-top:0px;color:#000000;font-size: 20px">
+                              ¿CÓMO JUGAR?
+                         </h2>
+                    </div>
+               </ion-item>
+               <div style="width:100%;height:auto;margin:0px 0px;text-align:center; background-color: #005C86; border-radius: 12px">
+                    <img id="imagenJuego" />
+               </div>
+               <div class="textoJugar">
+                    <div id="textoPrueba" >
 
-        </div>
-      </div>
-    </ion-list>
-  </ion-card>
+                    </div>
+               </div>
+          </div>
+     </div>
+</ion-content>
 
-
-    <div class="bottom-content row">
-
-        <div class="col col-center">
-            <button ion-button large id="jugar" class="login button button-block" (click) = "goToJuego()">
+<ion-footer>
+     <div class="col col-center" style="height: 100%">
+          <button ion-button large id="jugar" class="bottom-content-home2" (click)="goToJuego()">
+      Entrenar
+    </button>
+          <button ion-button large id="jugar" class="bottom-content-home" (click)="goToJuego()">
       Jugar
     </button>
-        </div>
-    </div>
-
-
-</ion-content>
+     </div>
+</ion-footer>

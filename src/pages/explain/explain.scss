@@ -14,11 +14,32 @@ ion-navbar {
   text-align: center;
 }
     .textoJugar{
-        padding: 50px;
+        padding: 20px 60px 20px 60px;
         text-align: center;
         display: block;
         height: auto;
+          font-size: 26px;
+         background-color:#e8ebef;
+          border-radius: 12px;
+         margin-top: 100px;
     }
-
-
+     ion-footer{
+          height: 90px;
+          .bottom-content-home2 {
+               height: 100%;
+               font-size: 20px;
+               font-weight: 500;
+               color: white;
+               background-color: #005C86;
+               width: 40%;
+     }
+            .bottom-content-home {
+                 height: 100%;
+               font-size: 20px;
+               font-weight: 500;
+               color: white;
+               background:  $bloom-background;
+               width: 59%;
+     }
+     }
 }

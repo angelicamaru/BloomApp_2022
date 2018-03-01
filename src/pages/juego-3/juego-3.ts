@@ -27,13 +27,21 @@ import {
  */
 
 class DeviceInfo2 {
-    enun = [];
-    res = [];
-     numero=0;
-     y :any;
-     setInfo() {
-          console.log("This is just a demo ...");
+     enun = [];
+     res = [];
+     numero = 0;
+     y = 0;
+     c = 0;
+     prueba: PruebaProvider;
+     nav: NavController;
+     juju() {
+          info.prueba.enviarPuntaje({
+               estado: "completed",
+               movTotales: info.y
+          }, "token");
+          info.nav.setRoot(HomePage);
      }
+
 }
 
 let info = new DeviceInfo2();
@@ -47,14 +55,14 @@ let info = new DeviceInfo2();
 })
 export class Juego_3Page {
 
-     constructor(public navCtrl: NavController, public navParams: NavParams) {
-info.numero = 0;
-
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
+          info.numero = 0;
+          info.prueba = this.pruebaProvider;
+          info.nav = this.navCtrl;
 
      }
 
      ionViewDidLoad() {
-
 
           info.enun = ["Toque el círculo rojo",
                        "Toque el cuadro verde",
@@ -81,29 +89,63 @@ info.numero = 0;
           info.res = [["t15", "t17"],
                       ["t1", "t9"],
                       ["t3", "t7"],
-                      ["t17","t8"],
-                      ["t16","t18"],
-                      ["t13","t20"],
-                      ["t5","t8"],
-                      ["t14","t16"],
-                      ["t12","t19"],
-                      ["t2","t6"],
+                      ["t12", "t19"],
+                      ["t18", "t11"],
+                      ["t13", "t20"],
+                      ["t5", "t8"],
+                      ["t14", "t16"],
+                      ["t4", "t10"],
+                      ["t2", "t6"],
                       ["t19"],
-                      ["t1"]];
+                      ["t13"],
+                      ["t12"],
+                      ["t4"],
+                      ["t20"],
+                      ["t15"],
+                      ["t2"],
+                      ["t18"],
+                      ["t9"],
+                      ["t11"],
+                     ];
 
           $('#gridToken').on('click', '.tokenBot .figure', function () {
-                var ide = $(this).attr('id');
-          var len = info.res[info.numero].length;
-                    for (var i = 0; i < len; i++) {
-                         if (ide == info.res[info.numero][i]) {
-                              info.numero++;
-                               $('#page-heading1').text(info.enun[info.numero]);
-                         }
-                    }
 
+               var ide = $(this).attr('id');
+               var len = info.res[info.numero].length;
+               var si = false;
+               for (var i = 0; i < len; i++) {
+                    if (ide == info.res[info.numero][i]) {
+                         si = true;
+                         info.numero++;
+                         $('#page-heading1').text(info.enun[info.numero]);
+                    }
+               }
+               if (!si) {
+                    info.c++;
+               } else {
+                    if (info.c == 0) {
+                         info.y++;
+                    }
+                    if (info.c >= 1) {
+                         info.y = info.y + 0.5;
+                         info.c = 0;
+                    }
+               }
+
+               if (info.numero == 20) {
+                    swal({
+                         allowEscapeKey: false,
+                         allowOutsideClick: false,
+                         title: 'Felicidades, completaste la prueba!',
+                         type: 'success',
+                         confirmButtonColor: '#f67b18',
+                         confirmButtonText: 'Siguiente Prueba'
+                    }).then(info.juju);
+               }
           });
 
      }
+
 
 
 }

@@ -4,6 +4,7 @@ import {
 import {
      IonicPage,
      NavController,
+     ViewController,
      NavParams
 } from 'ionic-angular';
 import * as $ from 'jquery';
@@ -30,9 +31,16 @@ class DeviceInfo {
      movesR: number;
      movesW: number;
      prueba: PruebaProvider;
-     y :any;
+     y: any;
+     x: any;
+     stop(){
+    clearInterval(info.x);
+          info.x=null;
+          console.log(info.x);
+     }
      setInfo() {
           console.log("This is just a demo ...");
+
      }
 }
 
@@ -54,17 +62,26 @@ export class Juego_2Page {
      private $canves;
      private $tower;
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private view: ViewController) {
           this.$canves = $('#canves');
           this.$tower = this.$canves.find('.tower');
           info.prueba = this.pruebaProvider;
-          info.name = false;
-     };
-
-     ionViewDidLoad() {
           info.navParent = this.navCtrl;
-          console.log(info.navParent);
+          info.name = false;
+          info.movesR = 0;
+          info.movesW = 0;
+     };
+ionViewDidLeave(){
+
+    clearInterval(info.x);
+          info.x=null;
+}
+     ionViewDidLoad() {
           this.holi();
+     };
+     ionViewWillEnter() {
+          // Part 1:
+          this.view.showBackButton(false);
      };
 
      holi() {
@@ -97,6 +114,7 @@ export class Juego_2Page {
                     }
                }
                if (($('#tower-3')).children().length === 3) {
+                            info.stop;
                     swal({
                          allowEscapeKey: false,
                          allowOutsideClick: false,
@@ -106,28 +124,22 @@ export class Juego_2Page {
                          confirmButtonText: 'Siguiente Prueba'
                     }).then(function (isConfirm) {
                          if (isConfirm) {
-                              info.name = true;
+                              info.prueba.enviarPuntaje({
+                                   estado: "completed",
+                                   movFallidos: info.movesW,
+                                   movTotales: info.movesR + info.movesW
+                              }, "hanoi");
+                              info.navParent.setRoot(HomePage);
                          }
                     });
                }
 
-                              info.movesR = moves;
-                              info.movesW = countW;
+               info.movesR = moves;
+               info.movesW = countW;
           });
      };
 
-     juju() {
-          if (info.name) {
-               info.prueba.enviarPuntaje({
-                    estado: "completed",
-                    movFallidos: info.movesW,
-                    movTotales: info.movesR + info.movesW
-               }, "hanoi");
-               info.navParent.setRoot(HomePage);
-               info.name = false;
-               clearInterval(info.y);
-          }
-     }
+
 
      setTimer() {
 
@@ -137,8 +149,7 @@ export class Juego_2Page {
           now5.setSeconds(now5.getSeconds() + 120);
           var distance: number;
           // Update the count down every 1 second
-          info.y = setInterval(this.juju, 1000);
-          var x = setInterval(function () {
+          info.x = setInterval(function () {
                // Get todays date and time
                var now = new Date().getTime();
                // Find the distance between now an the count down date
@@ -149,10 +160,10 @@ export class Juego_2Page {
                // Display the result in the element with id="demo"
                $('#demo').text(minutes + ":" + seconds);
                // If the count down is finished, write some text
+               console.log(distance);
                if (distance < 0) {
-                    clearInterval(x);
-                    $("#demo").text("SE ACABÓ");
-                    swal({
+                    info.stop();
+                   swal({
                          allowEscapeKey: false,
                          allowOutsideClick: false,
                          title: 'Se acabo el tiempo',
@@ -160,8 +171,13 @@ export class Juego_2Page {
                          confirmButtonColor: '#f67b18',
                          confirmButtonText: 'Siguiente Prueba'
                     }).then(function () {
-                         info.name = true;
-                         clearInterval(x);
+                         info.prueba.enviarPuntaje({
+                              estado: "completed",
+                              movFallidos: info.movesW,
+                              movTotales: info.movesR + info.movesW
+                         }, "hanoi");
+
+          info.navParent.setRoot(HomePage);
 
                     });
                }
