@@ -29,6 +29,20 @@ ion-navbar {
           align-items: center;
           align-content: center;
      }
+      #juego5 {
+          margin-right: -15px;
+          padding-bottom: 10px;
+          border-radius: 15px;
+          height: 400px;
+          background-color: #005C86;
+          width: 100%;
+          display: inline-flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+     }
      #juego4Up {
           margin-right: -15px;
           border-radius: 15px;
@@ -53,6 +67,19 @@ ion-navbar {
           border-radius: 15px;
           margin:10px 5px 0 5px;
           width: 30%;
+          height: 150px;
+          background: white;
+     }
+     .colors3 {
+           display: inline-flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          border-radius: 15px;
+          margin:10px 5px 0 5px;
+          width: 20%;
           height: 150px;
           background: white;
      }

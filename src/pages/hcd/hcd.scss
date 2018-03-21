@@ -1,0 +1,26 @@
+page-hcd {
+     ion-navbar {
+          .toolbar-background {
+               background: $bloom-background;
+          }
+     }
+     ion-title {
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 100%;
+          text-align: center;
+     }
+     .textoJugar {
+          padding: 20px 60px 20px 60px;
+          text-align: center;
+          display: block;
+          height: auto;
+          font-size: 26px;
+          background-color: #e8ebef;
+          border-radius: 12px;
+          margin-top: 100px;
+     }
+}

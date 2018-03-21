@@ -18,6 +18,9 @@ import {
 import {
      PruebaProvider
 } from '../../providers/prueba/prueba';
+import {
+     AlertController
+} from 'ionic-angular';
 
 /**
  * Generated class for the Juego_3Page page.
@@ -30,7 +33,7 @@ class DeviceInfo2 {
      enun = [];
      res = [];
      numero = 0;
-     y = 0;
+     y: any;
      c = 0;
      prueba: PruebaProvider;
      nav: NavController;
@@ -55,84 +58,213 @@ let info = new DeviceInfo2();
 })
 export class Juego_3Page {
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
           info.numero = 0;
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
+          info.y = [];
+          info.c = 0;
 
      }
 
+     ionViewCanLeave() {
+          if (info.numero == 36) {
+               return true;
+          } else {
+               let alert = this.alertCtrl.create({
+                    title: 'Prueba en proceso',
+                    subTitle: 'Por favor, termine la prueba',
+                    buttons: ['Ok']
+               });
+               alert.present();
+
+               return false;
+          }
+     }
+
+
+
+
      ionViewDidLoad() {
 
-          info.enun = ["Toque el círculo rojo",
-                       "Toque el cuadro verde",
-                       "Toque el cuadro rojo",
-                       "Toque el círculo amarillo",
-                       "Toque el círculo azul",
-                       "Toque el circulo verde",
-                       "Toque el cuadro amarillo",
-                       "Toque el circulo blanco",
-                       "Toque el cuadro azul",
-                       "Toque el cuadro blanco",
-                       "Toque el círculo amarillo, pequeño",
-                       "Toque el circulo verde, grande",
-                       "Toque el circulo amarillo, grande",
-                       "Toque el cuadro azul, grande",
-                       "Toque el círculo verde, pequeño",
-                       "Toque el círculo rojo, grande",
-                       "Toque el cuadro blanco, grande",
-                       "Toque el círculo azul, pequeño",
-                       "Toque el cuadro verde, pequeño",
-                       "Toque el circulo azul, grande"];
-          $('#page-heading1').text(info.enun[0]);
+          info.enun = ["Toque un círculo",
+                       "Toque un cuadrado",
+                       "Toque una ficha amarilla",
+                       "Toque una roja",
+                       "Toque una azul",
+                       "Toque una verde",
+                       "Toque una blanca",
 
-          info.res = [["t15", "t17"],
-                      ["t1", "t9"],
-                      ["t3", "t7"],
-                      ["t12", "t19"],
-                      ["t18", "t11"],
-                      ["t13", "t20"],
-                      ["t5", "t8"],
-                      ["t14", "t16"],
-                      ["t4", "t10"],
-                      ["t2", "t6"],
-                      ["t19"],
-                      ["t13"],
-                      ["t12"],
-                      ["t4"],
-                      ["t20"],
+                       "Toque el cuadrado amarillo",
+                       "Toque el círculo verde",
+                       "Toque el circulo azul",
+                       "Toque el cuadrado blanco",
+
+                       "Toque el círculo blanco pequeño",
+                       "Toque el cuadrado amarillo grande",
+                    "Toque el cuadrado verde grande",
+                       "Toque el círculo azul pequeño",
+
+                       "Toque el círculo rojo y luego el cuadrado verde",
+                       "Toque el cuadrado amarillo y luego el cuadrado azul",
+                       "Toque el cuadrado blanco, luego el círculo verde",
+                       "Toque el circulo blanco grande y luego círculo rojo grande",
+
+                       "Toque el círculo blanco grande y luego el cuadrado verde pequeño",
+                       "Toque el círculo azul pequeño, luego el cuadrado amarillo grande",
+                       "Toque el cuadrado verde grande y luego el cuadrado rojo grande",
+                       "Toque el cuadrado blanco grande y luego el círculo verde pequeño",
+
+                       "Toque el círculo rojo grande y luego el cuadrado verde grande",
+                       "Toque el círculo azul, luego el cuadrado rojo",
+                       "Toque el círculo rojo, luego el cuadrado azul",
+                       "Toque el cuadrado verde, luego el cuadrado amarillo",
+                       "Además de tocar el círculo amarillo, toque el círculo azul",
+                       "Toque el círculo azul o el cuadrado rojo",
+                      "Si hay un círculo azul, toque el cuadrado rojo",
+                       "Toque la figura que está a la derecha del círculo rojo",
+                       "Toque la figura que está a la izquierda del cuadrado verde",
+                       "Toque la figura entre el cuadrado azul y el cuadrado blanco",
+                       "Toque la segunda figura después del circulo azul",
+                       "Toque el círculo rojo, ¡No!, el cuadrado blanco",
+                       "En lugar del cuadrado blanco, toque el círculo amarillo"
+                      ];
+          $('#page-heading1').text(info.enun[info.numero]);
+
+          info.res = [["t15", "t17", "t11", "t12", "t14", "t13", "t16", "t18", "t19", "t20"],
+                      ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10"],
+                      ["t13", "t5", "t18", "t6"],
+                      ["t11", "t2", "t19", "t8"],
+                      ["t1", "t12", "t17", "t9"],
+                      ["t7", "t20", "t15", "t4"],
+                      ["t14", "t3", "t16", "t10"],
+                      ["t5"],
                       ["t15"],
+                      ["t12"],
+                      ["t3"],
+                      ["t16"],
+                      ["t5"],
+                      ["t4"],
+                      ["t17"],
+                      ["t11", "t4"],
+                      ["t5", "t1"],
+                      ["t3", "t15"],
+                      ["t14", "t11"],
+
+                      ["t14", "t7"],
+                      ["t17", "t5"],
+                      ["t4", "t2"],
+                      ["t3", "t20"],
+
+                      ["t11", "t4"],
+                      ["t12", "t2"],
+                      ["t11", "t1"],
+                      ["t4", "t5"],
+                      ["t13", "t12"],
+                      ["t12", "t2"],
                       ["t2"],
-                      ["t18"],
-                      ["t9"],
-                      ["t11"],
+                      ["t12"],
+                      ["t3"],
+                      ["t2"],
+                      ["t14"],
+                      ["t3"],
+                      ["t13"]
                      ];
 
           $('#gridToken').on('click', '.tokenBot .figure', function () {
+               if (info.numero > 5 && info.numero < 10 || info.numero > 13 && info.numero < 18 || info.numero > 22) {
+                    $('.containTokenPeque').attr("style", "display:none");
+               } else {
+                    $('.containTokenPeque').attr("style", "display:absolute");
+               }
 
                var ide = $(this).attr('id');
+               console.log(info.numero);
                var len = info.res[info.numero].length;
                var si = false;
-               for (var i = 0; i < len; i++) {
-                    if (ide == info.res[info.numero][i]) {
+               if (info.numero >= 28) {
+
+
+                    for (var i = 0; i < len; i++) {
+                         if (ide == info.res[info.numero][i]) {
+                              info.y[info.numero] = "1";
+                              info.numero++;
+                              console.log("uno");
+                              $('#page-heading1').text(info.enun[info.numero]);
+
+                         } else {
+
+                              console.log("cero");
+                              info.y[info.numero] = "0";
+                              info.numero++;
+                              $('#page-heading1').text(info.enun[info.numero]);
+                         }
+                    }
+
+               }
+               if (info.numero >= 15 && info.numero < 28) {
+
+                    if (ide == info.res[info.numero][info.c]) {
                          si = true;
+                         info.c++;
+                         console.log(info.c);
+                    } else {
+
+                         info.y[info.numero] = "0";
+                         console.log("cero");
+                         info.c = 0;
                          info.numero++;
                          $('#page-heading1').text(info.enun[info.numero]);
                     }
-               }
-               if (!si) {
-                    info.c++;
-               } else {
-                    if (info.c == 0) {
-                         info.y++;
-                    }
-                    if (info.c >= 1) {
-                         info.y = info.y + 0.5;
+
+                    if (info.c == 2) {
                          info.c = 0;
+
+                         info.y[info.numero] = "1";
+                         console.log("uno");
+                         info.numero++;
+                         $('#page-heading1').text(info.enun[info.numero]);
+                    }
+
+               }
+               if (info.numero <= 14) {
+
+                    for (var i = 0; i < len; i++) {
+                         if (ide == info.res[info.numero][i]) {
+                              si = true;
+                         }
+                    }
+                    if (!si) {
+                         info.c++;
+                    } else {
+                         if (info.c == 0) {
+                              console.log("uno");
+                              info.y[info.numero] = "1";
+
+                              info.numero++;
+                              $('#page-heading1').text(info.enun[info.numero]);
+                         } else {
+                              if (info.c == 1) {
+                                   info.y[info.numero] = "0.5";
+                                   console.log("0.5");
+                                   info.numero++;
+                                   $('#page-heading1').text(info.enun[info.numero]);
+                                   info.c = 0;
+                              } else {
+                                   info.y[info.numero] = "0";
+                                   info.c = 0;
+                                   console.log("cero");
+                                   info.numero++;
+                                   $('#page-heading1').text(info.enun[info.numero]);
+                              }
+                         }
                     }
                }
 
-               if (info.numero == 20) {
+
+
+
+               if (info.numero == 36) {
                     swal({
                          allowEscapeKey: false,
                          allowOutsideClick: false,

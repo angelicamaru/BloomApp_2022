@@ -14,6 +14,8 @@ import swal, {
 import {
      HomePage
 } from '../home/home';
+import { AlertController } from 'ionic-angular';
+
 
 import {
      PruebaProvider
@@ -31,13 +33,13 @@ class DeviceInfo4 {
      res = [];
      numero = 0;
      y = 0;
-     c = 0;
+     x: any;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
           info.prueba.enviarPuntaje({
                estado: "completed",
-               movTotales: info.y
+               movTotales: info.x
           }, "raven");
           info.nav.setRoot(HomePage);
      }
@@ -53,44 +55,60 @@ let info = new DeviceInfo4();
 })
 export class Juego_5Page {
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
+          info.prueba = this.pruebaProvider;
+          info.nav = this.navCtrl;
           info.numero = 1;
+          info.x = [];
+     }
+
+      ionViewCanLeave() {
+          if (info.numero == 61) {
+               return true;
+          } else {
+               let alert = this.alertCtrl.create({
+                    title: 'Prueba en proceso',
+                    subTitle: 'Por favor, termine la prueba',
+                    buttons: ['Ok']
+               });
+               alert.present();
+
+               return false;
+          }
      }
 
      ionViewDidLoad() {
+          $('#juego5').attr("style", "display:none");
 
-          info.res = ["color1", "color1", "color1", "color1", "color4", "color4", "color3", "color1", "color4", "color4", "color1"];
+          info.res = ["color4", "color5", "color1", "color2", "color6", "color3", "color6", "color2", "color1", "color3", "color5", "color4",
+
+                    "color2", "color6", "color1", "color2", "color1", "color3", "color5", "color6", "color4", "color3", "color4", "color5",
+
+                      "color8", "color2", "color3", "color8", "color7", "color4", "color5", "color1", "color7", "color6", "color1", "color2",
+
+                      "color3", "color4", "color3", "color7", "color8", "color6", "color5", "color4", "color1", "color2", "color5", "color6",
+
+                      "color7", "color6", "color8", "color2", "color1", "color5", "color2", "color4", "color1", "color6", "color3", "color5"];
 
           $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
           $('#figuraTest2').attr("src", 'assets/imgs/Raven/' + info.numero + '-02.png');
           $('#figuraTest3').attr("src", 'assets/imgs/Raven/' + info.numero + '-03.png');
           $('#figuraTest4').attr("src", 'assets/imgs/Raven/' + info.numero + '-04.png');
-          $('#figuraTest5').attr("src", 'assets/imgs/Raven/' + info.numero + '-05.png');
+          $('#figuraTest5').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
           $('#figuraTest6').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
-          $('#figuraTest7').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
+          $('#figuraTest7').attr("src", 'assets/imgs/Raven/' + info.numero + '-05.png');
 
-          $('#juego4').on('click', '.colors', function () {
+
+          $('#juego5').on('click', '.colors3', function () {
 
                var ide = $(this).attr('id');
-               console.log(ide);
-               if (ide == info.res[info.numero]) {
-
+               if (ide == info.res[info.numero-1]) {
+                    info.x[info.numero-1] = "1";
                } else {
-
+                    info.x[info.numero-1] = "0";
                }
                info.numero++;
-               $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
-          $('#figuraTest2').attr("src", 'assets/imgs/Raven/' + info.numero + '-02.png');
-          $('#figuraTest3').attr("src", 'assets/imgs/Raven/' + info.numero + '-03.png');
-          $('#figuraTest4').attr("src", 'assets/imgs/Raven/' + info.numero + '-04.png');
-          $('#figuraTest5').attr("src", 'assets/imgs/Raven/' + info.numero + '-05.png');
-          $('#figuraTest6').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
-          $('#figuraTest7').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
-
-
-
-
-               /* if (info.numero == 20) {
+                 if (info.numero == 61) {
                      swal({
                           allowEscapeKey: false,
                           allowOutsideClick: false,
@@ -99,8 +117,65 @@ export class Juego_5Page {
                           confirmButtonColor: '#f67b18',
                           confirmButtonText: 'Siguiente Prueba'
                      }).then(info.juju);
-                }*/
+                }
+               $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
+               $('#figuraTest8').attr("src", 'assets/imgs/Raven/' + info.numero + '-02.png');
+               $('#figuraTest9').attr("src", 'assets/imgs/Raven/' + info.numero + '-03.png');
+               $('#figuraTest10').attr("src", 'assets/imgs/Raven/' + info.numero + '-04.png');
+               $('#figuraTest11').attr("src", 'assets/imgs/Raven/' + info.numero + '-05.png');
+               $('#figuraTest12').attr("src", 'assets/imgs/Raven/' + info.numero + '-09.png');
+               $('#figuraTest13').attr("src", 'assets/imgs/Raven/' + info.numero + '-08.png');
+               $('#figuraTest14').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
+               $('#figuraTest15').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
+
+
+               console.log(info.x);
           });
+
+
+          $('#juego4').on('click', '.colors', function () {
+
+               var ide = $(this).attr('id');
+               if (ide == info.res[info.numero-1]) {
+                    info.x[info.numero-1] = "1";
+               } else {
+                    info.x[info.numero-1] = "0";
+               }
+               info.numero++;
+               $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
+               $('#figuraTest2').attr("src", 'assets/imgs/Raven/' + info.numero + '-02.png');
+               $('#figuraTest3').attr("src", 'assets/imgs/Raven/' + info.numero + '-03.png');
+               $('#figuraTest4').attr("src", 'assets/imgs/Raven/' + info.numero + '-04.png');
+               $('#figuraTest5').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
+               $('#figuraTest6').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
+               $('#figuraTest7').attr("src", 'assets/imgs/Raven/' + info.numero + '-05.png');
+               if (info.numero >= 25) {
+                    $('#juego4').attr("style", "display:none");
+                    $('#juego5').attr("style", "display:inline-flex");
+                    $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
+                    $('#figuraTest8').attr("src", 'assets/imgs/Raven/' + info.numero + '-02.png');
+                    $('#figuraTest9').attr("src", 'assets/imgs/Raven/' + info.numero + '-03.png');
+                    $('#figuraTest10').attr("src", 'assets/imgs/Raven/' + info.numero + '-04.png');
+                    $('#figuraTest11').attr("src", 'assets/imgs/Raven/' + info.numero + '-05.png');
+                    $('#figuraTest12').attr("src", 'assets/imgs/Raven/' + info.numero + '-09.png');
+                    $('#figuraTest13').attr("src", 'assets/imgs/Raven/' + info.numero + '-08.png');
+                    $('#figuraTest14').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
+                    $('#figuraTest15').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
+
+
+
+               }
+               console.log(info.x);
+          });
+
+
+
+
+
+
+
+
+
      }
 
 }

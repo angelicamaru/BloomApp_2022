@@ -28,6 +28,36 @@ page-juego-4 {
           align-items: center;
           align-content: center;
      }
+     #x{
+
+          display: inline-flex;
+          border-radius: 60px;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          z-index:10;
+          position: absolute;
+          background: #45A037;
+          height: 200px;
+          width: 30%;
+     }
+      #y{
+
+          display: inline-flex;
+          border-radius: 60px;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          z-index:10;
+          position: absolute;
+          background: #D93A3A;
+          height: 200px;
+          width: 30%;
+     }
      #juego4Up {
           margin-right: -15px;
           border-radius: 15px;

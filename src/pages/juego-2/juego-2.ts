@@ -15,6 +15,7 @@ import swal, {
 import {
      HomePage
 } from '../home/home';
+import { AlertController } from 'ionic-angular';
 
 import {
      PruebaProvider
@@ -62,7 +63,8 @@ export class Juego_2Page {
      private $canves;
      private $tower;
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private view: ViewController) {
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private view: ViewController, private alertCtrl: AlertController) {
+          info.y=false;
           this.$canves = $('#canves');
           this.$tower = this.$canves.find('.tower');
           info.prueba = this.pruebaProvider;
@@ -71,6 +73,21 @@ export class Juego_2Page {
           info.movesR = 0;
           info.movesW = 0;
      };
+    ionViewCanLeave() {
+          if (info.y) {
+               return true;
+          } else {
+               let alert = this.alertCtrl.create({
+                    title: 'Prueba en proceso',
+                    subTitle: 'Por favor, termine la prueba',
+                    buttons: ['Ok']
+               });
+               alert.present();
+
+               return false;
+          }
+     }
+
 ionViewDidLeave(){
 
     clearInterval(info.x);
@@ -115,6 +132,7 @@ ionViewDidLeave(){
                }
                if (($('#tower-3')).children().length === 3) {
                             info.stop;
+                    info.y=true;
                     swal({
                          allowEscapeKey: false,
                          allowOutsideClick: false,
@@ -162,6 +180,7 @@ ionViewDidLeave(){
                // If the count down is finished, write some text
                console.log(distance);
                if (distance < 0) {
+                    info.y=true;
                     info.stop();
                    swal({
                          allowEscapeKey: false,

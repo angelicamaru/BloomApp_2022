@@ -71,6 +71,7 @@ export class HomePage {
           $('#button4').attr('data-user', arr[3]);
           $('#button5').attr('style', 'background:url(assets/imgs/bloom-' + arr[4] + '.jpg) no-repeat center;background-size:cover;');
           $('#button5').attr('data-user', arr[4]);
+          $('#button6').attr('style', 'background:url(assets/imgs/bloom-hcd.jpg) no-repeat center;background-size:cover;');
      }
 
      shuffle(array) {
@@ -127,5 +128,9 @@ export class HomePage {
                     juego: ide
                });
           }
+     }
+      goToExplain6() {
+               this.navCtrl.push('HcdPage');
+
      }
 }
