@@ -35,6 +35,8 @@ class DeviceInfo2 {
      numero = 0;
      y: any;
      c = 0;
+     cero = 0;
+     ya = false;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
@@ -59,7 +61,7 @@ let info = new DeviceInfo2();
 export class Juego_3Page {
 
      constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
-          info.numero = 0;
+          info.numero = 25;
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
           info.y = [];
@@ -102,26 +104,26 @@ export class Juego_3Page {
 
                        "Toque el círculo blanco pequeño",
                        "Toque el cuadrado amarillo grande",
-                    "Toque el cuadrado verde grande",
+                       "Toque el cuadrado verde grande",
                        "Toque el círculo azul pequeño",
 
                        "Toque el círculo rojo y luego el cuadrado verde",
                        "Toque el cuadrado amarillo y luego el cuadrado azul",
                        "Toque el cuadrado blanco, luego el círculo verde",
-                       "Toque el circulo blanco grande y luego círculo rojo grande",
+                       "Toque el circulo blanco y luego círculo rojo",
 
                        "Toque el círculo blanco grande y luego el cuadrado verde pequeño",
                        "Toque el círculo azul pequeño, luego el cuadrado amarillo grande",
                        "Toque el cuadrado verde grande y luego el cuadrado rojo grande",
                        "Toque el cuadrado blanco grande y luego el círculo verde pequeño",
 
-                       "Toque el círculo rojo grande y luego el cuadrado verde grande",
+                       "Toque el círculo rojo y luego el cuadrado verde",
                        "Toque el círculo azul, luego el cuadrado rojo",
                        "Toque el círculo rojo, luego el cuadrado azul",
                        "Toque el cuadrado verde, luego el cuadrado amarillo",
                        "Además de tocar el círculo amarillo, toque el círculo azul",
                        "Toque el círculo azul o el cuadrado rojo",
-                      "Si hay un círculo azul, toque el cuadrado rojo",
+                       "Si hay un círculo azul, toque el cuadrado rojo",
                        "Toque la figura que está a la derecha del círculo rojo",
                        "Toque la figura que está a la izquierda del cuadrado verde",
                        "Toque la figura entre el cuadrado azul y el cuadrado blanco",
@@ -172,58 +174,88 @@ export class Juego_3Page {
                      ];
 
           $('#gridToken').on('click', '.tokenBot .figure', function () {
-               if (info.numero > 5 && info.numero < 10 || info.numero > 13 && info.numero < 18 || info.numero > 22) {
-                    $('.containTokenPeque').attr("style", "display:none");
-               } else {
-                    $('.containTokenPeque').attr("style", "display:absolute");
-               }
 
                var ide = $(this).attr('id');
-               console.log(info.numero);
                var len = info.res[info.numero].length;
                var si = false;
-               if (info.numero >= 28) {
 
-
+               if (info.numero > 27) {
+                    console.log("27.0.......");
                     for (var i = 0; i < len; i++) {
                          if (ide == info.res[info.numero][i]) {
                               info.y[info.numero] = "1";
-                              info.numero++;
                               console.log("uno");
-                              $('#page-heading1').text(info.enun[info.numero]);
-
                          } else {
-
                               console.log("cero");
                               info.y[info.numero] = "0";
-                              info.numero++;
-                              $('#page-heading1').text(info.enun[info.numero]);
                          }
                     }
-
+                    info.numero++;
+                    $('#page-heading1').text(info.enun[info.numero]);
                }
-               if (info.numero >= 15 && info.numero < 28) {
 
+               if (info.numero >= 19 && info.numero < 28) {
+                    console.log("28.0.......");
                     if (ide == info.res[info.numero][info.c]) {
                          si = true;
                          info.c++;
                          console.log(info.c);
                     } else {
-
                          info.y[info.numero] = "0";
                          console.log("cero");
                          info.c = 0;
                          info.numero++;
                          $('#page-heading1').text(info.enun[info.numero]);
                     }
-
                     if (info.c == 2) {
                          info.c = 0;
-
                          info.y[info.numero] = "1";
                          console.log("uno");
                          info.numero++;
                          $('#page-heading1').text(info.enun[info.numero]);
+                    }
+
+                    if (info.numero < 23) {
+                         $('.containTokenPeque').attr("style", "display:absolute");
+                    } else {
+                         $('.containTokenPeque').attr("style", "display:none");
+                    }
+               }
+
+
+               if (info.numero > 14 && info.numero < 19) {
+
+                    if (ide == info.res[info.numero][info.c]) {
+                         si = true;
+                         info.c++;
+                         console.log(info.c + " bien");
+                    } else {
+                         info.cero++;
+                         console.log("mal" + info.cero);
+
+                    }
+
+                    if (info.c == 2) {
+
+                         info.c = 0;
+                         if (info.cero == 0) {
+
+                              info.y[info.numero] = "1";
+                              console.log("uno");
+                         } else if (info.cero == 1) {
+                              info.cero = 0;
+                              info.y[info.numero] = "0.5";
+                              console.log("0.5");
+                         } else {
+                              info.cero = 0;
+                              info.y[info.numero] = "0";
+                              console.log("cero");
+                         }
+                         info.numero++;
+                         $('#page-heading1').text(info.enun[info.numero]);
+                    }
+                    if (info.numero == 19) {
+                         $('.containTokenPeque').attr("style", "display:absolute");
                     }
 
                }
@@ -259,11 +291,20 @@ export class Juego_3Page {
                               }
                          }
                     }
+                    if (info.numero < 7 || info.numero > 10) {
+
+                         $('.containTokenPeque').attr("style", "display:absolute");
+
+                    } else {
+
+                         $('.containTokenPeque').attr("style", "display:none");
+                    }
+                    if (info.numero == 15) {
+                         $('.containTokenPeque').attr("style", "display:none");
+                    }
                }
 
-
-
-
+               console.log(info.numero);
                if (info.numero == 36) {
                     swal({
                          allowEscapeKey: false,

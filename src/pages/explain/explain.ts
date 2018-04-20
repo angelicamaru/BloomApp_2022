@@ -45,5 +45,8 @@ private ides: any;
           //this.pruebaProvider.cambiarEstado("onProgress", this.ides);
           this.navCtrl.push('Juego_'+this.ides+'Page');
      }
+     goToTrain(){
+           this.navCtrl.push('Juego_'+this.ides+'TrainPage');
+     }
 
 }
