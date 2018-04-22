@@ -8,7 +8,6 @@ import {
      AuthProvider
 } from '../../providers/auth/auth';
 import * as $ from 'jquery';
-import firebase from 'firebase';
 
 import {
      PruebaProvider

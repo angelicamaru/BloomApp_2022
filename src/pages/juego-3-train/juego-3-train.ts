@@ -11,16 +11,10 @@ import * as $ from 'jquery';
 import swal, {
      SweetAlertOptions
 } from 'sweetalert2';
-import {
-     HomePage
-} from '../home/home';
 
 import {
      PruebaProvider
 } from '../../providers/prueba/prueba';
-import {
-     AlertController
-} from 'ionic-angular';
 /**
  * Generated class for the Juego_3TrainPage page.
  *
@@ -51,7 +45,7 @@ let info = new DeviceInfo2();
 })
 export class Juego_3TrainPage {
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
           info.numero = 0;
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;

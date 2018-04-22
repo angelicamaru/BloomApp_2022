@@ -61,7 +61,7 @@ let info = new DeviceInfo2();
 export class Juego_3Page {
 
      constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
-          info.numero = 25;
+          info.numero = 0;
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
           info.y = [];

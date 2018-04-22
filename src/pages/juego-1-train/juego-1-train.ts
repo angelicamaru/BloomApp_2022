@@ -24,9 +24,7 @@ import {
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-import {
-     HomePage
-} from '../home/home';
+
 
 class DeviceInfo6 {
      arriba = [];

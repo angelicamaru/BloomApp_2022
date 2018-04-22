@@ -12,9 +12,6 @@ import * as $ from 'jquery';
 import swal, {
      SweetAlertOptions
 } from 'sweetalert2';
-import {
-     HomePage
-} from '../home/home';
 import { AlertController } from 'ionic-angular';
 
 import {
@@ -51,14 +48,11 @@ let info = new DeviceInfo();
 })
 export class Juego_2TrainPage {
 // Variables
-     private moves = 0;
-     private countW = 0;
      private disksNum = 2; //se debe cambiar en la linea 116
-     private minMoves = 127;
      private $canves;
      private $tower;
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private view: ViewController, private alertCtrl: AlertController) {
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
           info.y=false;
           this.$canves = $('#canves');
           this.$tower = this.$canves.find('.tower');
@@ -77,8 +71,6 @@ ionViewDidLeave(){
      holi() {
 
           this.initGame(1);
-          var moves = 0;
-          var countW = 0;
           var holding = [];
 
           // Event Handlers

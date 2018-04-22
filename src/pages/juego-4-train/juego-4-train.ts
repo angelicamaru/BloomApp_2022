@@ -12,9 +12,6 @@ import swal, {
      SweetAlertOptions
 } from 'sweetalert2';
 import {
-     HomePage
-} from '../home/home';
-import {
      AlertController
 } from 'ionic-angular';
 
@@ -51,7 +48,7 @@ let info = new DeviceInfo5();
 })
 export class Juego_4TrainPage {
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
+     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
 
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;

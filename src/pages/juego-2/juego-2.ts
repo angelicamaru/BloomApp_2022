@@ -55,11 +55,7 @@ let info = new DeviceInfo();
      templateUrl: 'juego-2.html',
 })
 export class Juego_2Page {
-     // Variables
-     private moves = 0;
-     private countW = 0;
-     private disksNum = 3; //se debe cambiar en la linea 133
-     private minMoves = 127;
+     private disksNum = 3; //se debe cambiar en la linea 129
      private $canves;
      private $tower;
 
