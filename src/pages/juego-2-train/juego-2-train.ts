@@ -74,11 +74,6 @@ ionViewDidLeave(){
           $('#y').attr("style", "display:none");
           this.holi();
      };
-     ionViewWillEnter() {
-          // Part 1:
-          this.view.showBackButton(false);
-     };
-
      holi() {
 
           this.initGame(1);

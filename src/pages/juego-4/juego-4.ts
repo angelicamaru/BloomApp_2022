@@ -15,7 +15,9 @@ import swal, {
 import {
      HomePage
 } from '../home/home';
-import { AlertController } from 'ionic-angular';
+import {
+     AlertController
+} from 'ionic-angular';
 
 import {
      PruebaProvider
@@ -64,7 +66,7 @@ export class Juego_4Page {
           info.x = [];
      }
 
-       ionViewCanLeave() {
+     ionViewCanLeave() {
           if (info.numero == 70) {
                return true;
           } else {
