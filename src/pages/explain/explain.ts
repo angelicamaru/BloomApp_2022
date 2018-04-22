@@ -42,7 +42,7 @@ private ides: any;
         $('#imagenJuego').attr('src',links[this.ides-1]);
     }
      goToJuego(){
-          //this.pruebaProvider.cambiarEstado("onProgress", this.ides);
+          this.pruebaProvider.cambiarEstado("onProgress", this.ides);
           this.navCtrl.push('Juego_'+this.ides+'Page');
      }
      goToTrain(){
