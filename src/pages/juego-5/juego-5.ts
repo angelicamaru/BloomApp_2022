@@ -14,7 +14,9 @@ import swal, {
 import {
      HomePage
 } from '../home/home';
-import { AlertController } from 'ionic-angular';
+import {
+     AlertController
+} from 'ionic-angular';
 
 
 import {
@@ -62,7 +64,7 @@ export class Juego_5Page {
           info.x = [];
      }
 
-      ionViewCanLeave() {
+     ionViewCanLeave() {
           if (info.numero == 61) {
                return true;
           } else {
@@ -102,22 +104,22 @@ export class Juego_5Page {
           $('#juego5').on('click', '.colors3', function () {
 
                var ide = $(this).attr('id');
-               if (ide == info.res[info.numero-1]) {
-                    info.x[info.numero-1] = "1";
+               if (ide == info.res[info.numero - 1]) {
+                    info.x[info.numero - 1] = "1";
                } else {
-                    info.x[info.numero-1] = "0";
+                    info.x[info.numero - 1] = "0";
                }
                info.numero++;
-                 if (info.numero == 61) {
-                     swal({
-                          allowEscapeKey: false,
-                          allowOutsideClick: false,
-                          title: 'Felicidades, completaste la prueba!',
-                          type: 'success',
-                          confirmButtonColor: '#f67b18',
-                          confirmButtonText: 'Siguiente Prueba'
-                     }).then(info.juju);
-                }
+               if (info.numero == 61) {
+                    swal({
+                         allowEscapeKey: false,
+                         allowOutsideClick: false,
+                         title: 'Felicidades, completaste la prueba!',
+                         type: 'warning',
+                         confirmButtonColor: '#f67b18',
+                         confirmButtonText: 'Siguiente Prueba'
+                    }).then(info.juju);
+               }
                $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
                $('#figuraTest8').attr("src", 'assets/imgs/Raven/' + info.numero + '-02.png');
                $('#figuraTest9').attr("src", 'assets/imgs/Raven/' + info.numero + '-03.png');
@@ -136,10 +138,10 @@ export class Juego_5Page {
           $('#juego4').on('click', '.colors', function () {
 
                var ide = $(this).attr('id');
-               if (ide == info.res[info.numero-1]) {
-                    info.x[info.numero-1] = "1";
+               if (ide == info.res[info.numero - 1]) {
+                    info.x[info.numero - 1] = "1";
                } else {
-                    info.x[info.numero-1] = "0";
+                    info.x[info.numero - 1] = "0";
                }
                info.numero++;
                $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
@@ -161,9 +163,6 @@ export class Juego_5Page {
                     $('#figuraTest13').attr("src", 'assets/imgs/Raven/' + info.numero + '-08.png');
                     $('#figuraTest14').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
                     $('#figuraTest15').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
-
-
-
                }
                console.log(info.x);
           });

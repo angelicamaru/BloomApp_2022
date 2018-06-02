@@ -32,13 +32,22 @@ class DeviceInfo6 {
      res = [];
      numero = 0;
      x: any;
+     y: any;
+     z: any;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
+          info.prueba.enviarEntrenamiento({
+                 movTotales: info.x
+            }, "stroop",info.z+"");
+          if(info.y<4){
+
+               info.y=0;
+          }else{
+
           info.nav.pop();
+          }
      }
-
-
 }
 
 let info = new DeviceInfo6();
@@ -54,12 +63,14 @@ export class Juego_1TrainPage {
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
           info.numero = 0;
-          info.x = 0;
+          info.x = [];
+          info.y=0;
+          info.z=0;
      }
 
      ionViewDidLoad() {
 
-          // swal("¿El color de la palabra de arriba coincide con el nombre del color escrito abajo?");
+
           $('#y').attr("style", "display:none");
           $('#x').attr("style", "display:none");
           info.arriba = [["círculo", "red"], ["gato", "blue"], ["ocho", "yellow"],
@@ -83,12 +94,15 @@ export class Juego_1TrainPage {
                var ide = $(this).attr('id');
                console.log(ide);
                if (ide == info.res[info.numero]) {
-                    info.x++;
+                    info.y++;
+                    info.x[info.numero]="1";
+
                     $('#x').attr("style", "display:inline-flex");
                     setTimeout(function () {
                          $('#x').attr("style", "display:none");
                     }, 500);
                } else {
+                    info.x[info.numero]="0";
                     $('#y').attr("style", "display:inline-flex");
                     setTimeout(function () {
                          $('#y').attr("style", "display:none");
@@ -96,7 +110,7 @@ export class Juego_1TrainPage {
                }
                info.numero++;
                if (info.numero == 5) {
-                    if (info.x < 4) {
+                    if (info.y < 4) {
                          swal({
                               allowEscapeKey: false,
                               allowOutsideClick: false,
@@ -104,8 +118,8 @@ export class Juego_1TrainPage {
                               type: 'warning',
                               confirmButtonColor: '#f67b18',
                               confirmButtonText: 'De nuevo'
-                         });
-                         info.x = 0;
+                         }).then(info.juju);
+
                          info.numero = 0;
                          $('#color1').text(info.arriba[0][0]);
                          $('#color1').css("color", info.arriba[0][1]);
@@ -113,6 +127,7 @@ export class Juego_1TrainPage {
                          $('#color2').css("color", info.abajo[0][1]);
                          var texto = "¿La palabra de arriba: '" + info.arriba[info.numero][0] + "' está escrita con el nombre del color escrito abajo: '" + info.abajo[info.numero][0] + "' ?";
                          $('#texto').text(texto);
+                         info.z++;
                     } else {
                          swal({
                               allowEscapeKey: false,

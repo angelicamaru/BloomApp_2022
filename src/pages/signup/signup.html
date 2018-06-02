@@ -34,6 +34,12 @@
                <ion-input formControlName="apellido" type="lastName" placeholder="Apellido" ></ion-input>
           </ion-item>
           <ion-item class="bloomitem">
+               <ion-select formControlName="genero" placeholder="Género" >
+                <ion-option value="femenino">Femenino</ion-option>
+                <ion-option value="masculino">Masculino</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="bloomitem">
                <ion-datetime displayFormat="MMM DD, YYYY" formControlName="fecha" [(ngModel)]="myDate" placeholder="Fecha de nacimiento"></ion-datetime>
           </ion-item>
           <ion-item class="bloomitem">

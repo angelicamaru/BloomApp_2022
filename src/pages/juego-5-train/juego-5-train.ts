@@ -26,6 +26,9 @@ class DeviceInfo4 {
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
+          info.prueba.enviarEntrenamiento({
+               movTotales: info.x
+          }, "raven", info.y+"");
           info.nav.pop();
      }
 
@@ -51,7 +54,6 @@ export class Juego_5TrainPage {
 
           $('#juego5').attr("style", "display:none");
 
-          info.res = ["color4"];
 
           $('#figuraTest1').attr("src", 'assets/imgs/Raven/' + info.numero + '-01.png');
           $('#figuraTest2').attr("src", 'assets/imgs/Raven/' + info.numero + '-02.png');
@@ -64,20 +66,23 @@ export class Juego_5TrainPage {
           $('#juego4').on('click', '.colors', function () {
 
                var ide = $(this).attr('id');
-               if (ide == info.res[info.numero-1]) {
-                    info.x[info.numero-1] = "1";
+               if (ide === "color5") {
+                    console.log("uno"+ide);
+                    info.x[0] = "1";
                } else {
-                    info.x[info.numero-1] = "0";
+                    console.log("cero"+ide);
+                    info.x[0] = "0";
                }
                info.numero++;
                  if (info.numero == 3) {
+                      info.y++;
                      swal({
                           allowEscapeKey: false,
                           allowOutsideClick: false,
                           title: 'Felicidades, completaste el entrenamiento!',
-                          type: 'success',
+                          type: 'info',
                           confirmButtonColor: '#f67b18',
-                          confirmButtonText: 'Empezar prueba'
+                          confirmButtonText: 'Acepto'
                      }).then(info.juju);
                 }
           });

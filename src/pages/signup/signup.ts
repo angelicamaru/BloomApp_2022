@@ -21,6 +21,9 @@ import {
 import {
      EmailValidator
 } from '../../validators/email';
+import swal, {
+     SweetAlertOptions
+} from 'sweetalert2';
 import {
      AuthProvider
 } from '../../providers/auth/auth';
@@ -61,12 +64,23 @@ export class SignupPage {
                apellido: [""],
                email: [""],
                tipo: [""],
-               nivel: [""]
+               nivel: [""],
+               genero: [""]
           });
      }
 
      ionViewDidLoad() {
           console.log('ionViewDidLoad SignupPage');
+
+          swal({
+               allowEscapeKey: false,
+               allowOutsideClick: false,
+               title: "Aviso de privacidad",
+               text: 'Bloom garantiza que la información que envía cuenta con la seguridad necesaria y será únicamente utilizada para fines investigativos.',
+               type: 'info',
+               confirmButtonColor: '#f67b18',
+               confirmButtonText: 'Acepto'
+          });
      }
 
 
@@ -80,8 +94,8 @@ export class SignupPage {
                const fecha: string = this.signupForm.value.fecha;
                const nombre: string = this.signupForm.value.nombre + " " + this.signupForm.value.apellido;
                const nivel: string = this.signupForm.value.nivel;
-
-               this.authProvider.signupUser(email, tipo, cargo, fecha, nombre, nivel).then(user => {
+               const genero: string = this.signupForm.value.genero;
+               this.authProvider.signupUser(email, tipo, cargo, fecha, nombre, nivel, genero).then(user => {
                          this.loading.dismiss().then(() => {
                               this.pruebaProvider.ponerEstado("hanoi");
                               this.pruebaProvider.ponerEstado("stroop");

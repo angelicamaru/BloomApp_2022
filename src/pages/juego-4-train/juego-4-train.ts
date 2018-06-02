@@ -31,11 +31,17 @@ class DeviceInfo5 {
      numero = 0;
      y = false;
      x: any;
+     z = 0;
      x2: any;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
-          info.nav.pop();
+          info.prueba.enviarEntrenamiento({
+               movTotales: info.x
+          }, "wisconsin", info.z + "");
+          if (info.x2 < 5) {} else {
+               info.nav.pop();
+          }
      }
 
 }
@@ -52,7 +58,6 @@ export class Juego_4TrainPage {
 
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
-
           info.numero = 0;
           info.y = false;
           info.x = [];
@@ -95,6 +100,7 @@ export class Juego_4TrainPage {
                $('#figuraTest').attr("src", 'assets/imgs/Wisconsin/' + info.enun[info.numero] + '.gif');
                $('#clasificacion').text("Supongamos que la regla de clasificación es por " + info.clasificacion[info.numero]);
                if (info.numero == 6) {
+                    info.z++;
                     if (info.x2 < 5) {
                          swal({
                               allowEscapeKey: false,
@@ -103,7 +109,7 @@ export class Juego_4TrainPage {
                               type: 'warning',
                               confirmButtonColor: '#f67b18',
                               confirmButtonText: 'De nuevo'
-                         });
+                         }).then(info.juju);
                          info.x2 = 0;
                          info.numero = 0;
                          $('#figuraTest').attr("src", 'assets/imgs/Wisconsin/' + info.enun[0] + '.gif');

@@ -27,13 +27,23 @@ class DeviceInfo2 {
      res = [];
      numero = 0;
      y: any;
+     x = 0;
      c = 0;
+     z:any;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
-          info.nav.pop();
-     }
 
+          info.prueba.enviarEntrenamiento({
+               movTotales: info.z
+          }, "token", info.x + "");
+          if (info.y > 4) {
+               info.nav.pop();
+          } else {
+
+          }
+
+     }
 }
 
 let info = new DeviceInfo2();
@@ -50,12 +60,14 @@ export class Juego_3TrainPage {
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
           info.y = 0;
+          info.z = [];
           info.c = 0;
 
      }
 
      ionViewDidLoad() {
-          info.enun = ["Toque un cuadrado", //0 grande
+          info.enun = [
+                       "Toque un cuadrado", //0 grande
                        "Toque el circulo azul", //8 pqw
                        "Toque el cuadrado amarillo y luego el cuadrado azul", //15 and c=2 p
         "Toque el cuadrado verde grande y luego el cuadrado rojo grande", //20 g
@@ -76,12 +88,6 @@ export class Juego_3TrainPage {
 
           $('#gridToken').on('click', '.tokenBot .figure', function () {
 
-               if (info.numero == 2 && info.c == 1 || info.numero == 3 && info.c == 0) {
-                    $('.containTokenPeque').attr("style", "display:absolute");
-               } else {
-                    $('.containTokenPeque').attr("style", "display:none");
-               }
-               console.log(info.numero);
                var ide = $(this).attr('id');
                var len = info.res[info.numero].length;
                var si = false;
@@ -91,12 +97,14 @@ export class Juego_3TrainPage {
                     for (var i = 0; i < len; i++) {
                          if (ide == info.res[info.numero][i]) {
                               info.y++;
+                              info.z[info.numero] = "1";
                               info.numero++;
                               console.log("uno");
                               $('#page-heading1').text(info.enun[info.numero]);
 
                          } else {
 
+                              info.z[info.numero] = "0";
                               console.log("cero");
                               info.numero++;
                               $('#page-heading1').text(info.enun[info.numero]);
@@ -112,6 +120,7 @@ export class Juego_3TrainPage {
                          console.log(info.c);
                     } else {
 
+                         info.z[info.numero] = "0";
                          console.log("cero");
                          info.c = 0;
                          info.numero++;
@@ -121,6 +130,7 @@ export class Juego_3TrainPage {
                     if (info.c == 2) {
                          info.c = 0;
                          info.y++;
+                         info.z[info.numero] = "1";
                          console.log("uno");
                          info.numero++;
                          $('#page-heading1').text(info.enun[info.numero]);
@@ -138,6 +148,8 @@ export class Juego_3TrainPage {
                          info.c++;
                     } else {
                          if (info.c == 0) {
+
+                              info.z[info.numero] = "1";
                               console.log("uno");
                               info.y++;
 
@@ -145,12 +157,16 @@ export class Juego_3TrainPage {
                               $('#page-heading1').text(info.enun[info.numero]);
                          } else {
                               if (info.c == 1) {
+
+                                   info.z[info.numero] = "0.5";
                                    console.log("0.5");
                                    info.numero++;
                                    $('#page-heading1').text(info.enun[info.numero]);
                                    info.c = 0;
                               } else {
                                    info.c = 0;
+
+                                   info.z[info.numero] = "0";
                                    console.log("cero");
                                    info.numero++;
                                    $('#page-heading1').text(info.enun[info.numero]);
@@ -160,16 +176,18 @@ export class Juego_3TrainPage {
                }
 
                if (info.numero == 6) {
-                    if(info.y>4){
-                          swal({
-                         allowEscapeKey: false,
-                         allowOutsideClick: false,
-                         title: 'Felicidades, completaste el entrenamiento!',
-                         type: 'success',
-                         confirmButtonColor: '#f67b18',
-                         confirmButtonText: 'Comenzar Prueba'
-                    }).then(info.juju);
-                    }else{
+                    info.x++;
+                    if (info.y > 4) {
+                         swal({
+                              allowEscapeKey: false,
+                              allowOutsideClick: false,
+                              title: 'Felicidades, completaste el entrenamiento!',
+                              type: 'success',
+                              confirmButtonColor: '#f67b18',
+                              confirmButtonText: 'Comenzar Prueba'
+                         }).then(info.juju);
+                    } else {
+
                          swal({
                               allowEscapeKey: false,
                               allowOutsideClick: false,
@@ -177,11 +195,18 @@ export class Juego_3TrainPage {
                               type: 'warning',
                               confirmButtonColor: '#f67b18',
                               confirmButtonText: 'De nuevo'
-                         });
-                         info.numero=0;
-                          $('#page-heading1').text(info.enun[info.numero]);
+                         }).then(info.juju);
+                         info.numero = 0;
+                         info.y = 0;
+                         $('#page-heading1').text(info.enun[info.numero]);
                     }
 
+               }
+
+               if (info.numero == 2 && info.c == 2 || info.numero == 3 || info.numero == 0) {
+                    $('.containTokenPeque').attr("style", "display:absolute");
+               } else {
+                    $('.containTokenPeque').attr("style", "display:none");
                }
           });
      }

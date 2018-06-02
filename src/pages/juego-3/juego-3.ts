@@ -72,6 +72,7 @@ export class Juego_3Page {
      ionViewCanLeave() {
           if (info.numero == 36) {
                return true;
+
           } else {
                let alert = this.alertCtrl.create({
                     title: 'Prueba en proceso',
@@ -180,7 +181,6 @@ export class Juego_3Page {
                var si = false;
 
                if (info.numero > 27) {
-                    console.log("27.0.......");
                     for (var i = 0; i < len; i++) {
                          if (ide == info.res[info.numero][i]) {
                               info.y[info.numero] = "1";
@@ -195,7 +195,6 @@ export class Juego_3Page {
                }
 
                if (info.numero >= 19 && info.numero < 28) {
-                    console.log("28.0.......");
                     if (ide == info.res[info.numero][info.c]) {
                          si = true;
                          info.c++;

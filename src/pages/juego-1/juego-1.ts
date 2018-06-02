@@ -148,8 +148,6 @@ export class Juego_1Page {
                          confirmButtonText: 'Siguiente Prueba'
                     }).then(info.juju);
                }else{
-
-
                $('#color1').text(info.arriba[info.numero][0]);
                $('#color1').css("color", info.arriba[info.numero][1]);
                $('#color2').text(info.abajo[info.numero][0]);

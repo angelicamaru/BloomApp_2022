@@ -12,7 +12,9 @@ import * as $ from 'jquery';
 import swal, {
      SweetAlertOptions
 } from 'sweetalert2';
-import { AlertController } from 'ionic-angular';
+import {
+     AlertController
+} from 'ionic-angular';
 
 import {
      PruebaProvider
@@ -31,9 +33,9 @@ class DeviceInfo {
      prueba: PruebaProvider;
      y: any;
      x: any;
-     stop(){
-    clearInterval(info.x);
-          info.x=null;
+     stop() {
+          clearInterval(info.x);
+          info.x = null;
           console.log(info.x);
      }
 }
@@ -43,27 +45,29 @@ let info = new DeviceInfo();
 
 @IonicPage()
 @Component({
-  selector: 'page-juego-2-train',
-  templateUrl: 'juego-2-train.html',
+     selector: 'page-juego-2-train',
+     templateUrl: 'juego-2-train.html',
 })
 export class Juego_2TrainPage {
-// Variables
+     // Variables
      private disksNum = 2; //se debe cambiar en la linea 116
      private $canves;
      private $tower;
 
      constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
-          info.y=false;
+          info.y = false;
           this.$canves = $('#canves');
           this.$tower = this.$canves.find('.tower');
           info.prueba = this.pruebaProvider;
           info.navParent = this.navCtrl;
+          info.movesR = 0;
+          info.movesW = 0;
      };
-ionViewDidLeave(){
+     ionViewDidLeave() {
 
-    clearInterval(info.x);
-          info.x=null;
-}
+          clearInterval(info.x);
+          info.x = null;
+     }
      ionViewDidLoad() {
           $('#y').attr("style", "display:none");
           this.holi();
@@ -72,6 +76,8 @@ ionViewDidLeave(){
 
           this.initGame(1);
           var holding = [];
+          var moves = 0;
+          var countW = 0;
 
           // Event Handlers
           $('#canves').on('click', '.tower', function () {
@@ -85,12 +91,13 @@ ionViewDidLeave(){
                          } else if (topDiskValue === undefined || topDiskValue > holding[0]) {
                               $($holdingDisk).remove();
                               $(this).append($('<li class="disk disk-' + holding[0] + '" data-value="' + holding[0] + '"></li>'));
-
+                              moves++;
                          } else {
-                               $('#y').attr("style", "display:inline-flex");
-                    setTimeout(function () {
-                         $('#y').attr("style", "display:none");
-                    }, 500);
+                              countW++;
+                              $('#y').attr("style", "display:inline-flex");
+                              setTimeout(function () {
+                                   $('#y').attr("style", "display:none");
+                              }, 500);
 
                          }
                     } else if ($topDisk.length !== 0) {
@@ -99,8 +106,8 @@ ionViewDidLeave(){
                     }
                }
                if (($('#tower-3')).children().length === 2) {
-                            info.stop;
-                    info.y=true;
+                    info.stop;
+                    info.y = true;
                     swal({
                          allowEscapeKey: false,
                          allowOutsideClick: false,
@@ -110,11 +117,18 @@ ionViewDidLeave(){
                          confirmButtonText: 'Realizar prueba'
                     }).then(function (isConfirm) {
                          if (isConfirm) {
+
+                              info.prueba.enviarEntrenamiento({
+                                   movFallidos: info.movesW,
+                                   movTotales: info.movesR + info.movesW
+                              }, "hanoi", "1");
                               info.navParent.pop();
                          }
                     });
                }
 
+               info.movesR = moves;
+               info.movesW = countW;
           });
      };
 

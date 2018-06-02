@@ -53,7 +53,7 @@ export class HomePage {
           for (var i = 1; i < 6; i++) {
                await this.pruebaProvider.isUndone(i).then(result => {
                     res = result.toString();
-                    if (res === un) {} else {
+                    if (res === un || res==="entrenamiento") {} else {
                          arr[i - 1] = i + 5;
                     }
                });

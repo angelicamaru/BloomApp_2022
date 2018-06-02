@@ -21,8 +21,13 @@ export class PruebaProvider {
      }
      enviarPuntaje(puntaje: any, prueba: string): Promise < any > {
           var uid = firebase.auth().currentUser.uid;
-          return firebase.database().ref(`/usuarios/${uid}/${prueba}`).set(puntaje);
+          return firebase.database().ref(`/usuarios/${uid}/${prueba}`).update(puntaje);
      }
+     enviarEntrenamiento(puntaje: any, prueba: string, numero: string): Promise < any > {
+          var uid = firebase.auth().currentUser.uid;
+          return firebase.database().ref(`/usuarios/${uid}/${prueba}/entrenamiento${numero}`).update(puntaje);
+     }
+
      ponerEstado(prueba: string): Promise < any > {
           var uid = firebase.auth().currentUser.uid;
           return firebase.database().ref(`/usuarios/${uid}/${prueba}/estado`).set("undone");

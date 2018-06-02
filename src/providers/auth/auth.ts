@@ -21,7 +21,7 @@ export class AuthProvider {
           return firebase.auth().signInWithEmailAndPassword(email + "@bloom.com", "123456");
      }
 
-     signupUser(email: string, tipo: string, cargo: string, fecha: string, nombre: string, nivel: string): Promise < any > {
+     signupUser(email: string, tipo: string, cargo: string, fecha: string, nombre: string, nivel: string, genero: string): Promise < any > {
           return firebase.auth()
                .createUserWithEmailAndPassword(email + "@bloom.com", "123456").then(newUser => {
 
@@ -39,6 +39,7 @@ export class AuthProvider {
                                    numero: email,
                                    tipo: tipo
                               },
+                              genero: genero,
                               cargo: cargo,
                               fecha: fecha,
                               nombre: nombre,
@@ -50,8 +51,6 @@ export class AuthProvider {
                     throw new Error(error);
                });
      }
-
-
 
      logoutUser(): Promise < void > {
           const userId: string = firebase.auth().currentUser.uid;
