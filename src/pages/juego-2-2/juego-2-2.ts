@@ -1,5 +1,5 @@
 import {
-    Component
+    Component, NgModule, NgModuleFactory
 } from '@angular/core';
 import {
     IonicPage,
@@ -23,12 +23,12 @@ import {
     PruebaProvider
 } from '../../providers/prueba/prueba';
 /**
- * Generated class for the Juego_2Page page.
+ * Generated class for the Juego_2_2Page page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-class DeviceInfo {
+class DeviceInfoH {
     name: boolean;
     navParent: any;
     movesR: number;
@@ -37,7 +37,6 @@ class DeviceInfo {
     y: any;
     x: any;
     t: any;
-
     now = 0;
     total = 0;
     resultados: any;
@@ -48,30 +47,30 @@ class DeviceInfo {
     }
 }
 
-let info = new DeviceInfo();
-
+let info = new DeviceInfoH();
 
 @IonicPage()
 @Component({
-    selector: 'page-juego-2',
-    templateUrl: 'juego-2.html',
+    selector: 'page-juego-2-2',
+    templateUrl: 'juego-2-2.html',
 })
-export class Juego_2Page {
-    private disksNum = 3; //se debe cambiar en la linea 131
+export class Juego_2_2Page {
+
+    private disksNum = 4; //se debe cambiar en la linea 131
     private $canves;
     private $tower;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private view: ViewController, private alertCtrl: AlertController) {
         info.resultados = [];
         info.y = false;
-        this.$canves = $('#canves');
-        this.$tower = this.$canves.find('.tower');
         info.prueba = this.pruebaProvider;
         info.navParent = this.navCtrl;
         info.name = false;
         info.movesR = 0;
         info.movesW = 0;
-    };
+
+    }
+
     ionViewCanLeave() {
         if (info.y) {
             return true;
@@ -82,21 +81,17 @@ export class Juego_2Page {
                 buttons: ['Ok']
             });
             alert.present();
-
             return false;
         }
     }
-
     ionViewDidLeave() {
 
-        info.navParent.setRoot('Juego_2_2Page');
-        alert('Ahora inténtalo con 4 discos!');
         clearInterval(info.t);
         info.x = null;
     }
     ionViewDidLoad() {
         this.holi();
-    };
+    }
     ionViewWillEnter() {
         // Part 1:
         this.view.showBackButton(false);
@@ -143,96 +138,49 @@ export class Juego_2Page {
             info.movesR = moves;
             info.movesW = countW;
 
-            if (($('#tower-3')).children().length === 3) {
+            if (($('#tower-3')).children().length === 4) {
                 info.stop;
                 info.y = true;
                 swal({
                     allowEscapeKey: false,
                     allowOutsideClick: false,
-                    title: 'Felicidades, completaste la primera parte!',
+                    title: 'Felicidades, completaste la prueba!',
                     type: 'success',
                     confirmButtonColor: '#f67b18',
                     confirmButtonText: 'Siguiente Prueba'
                 }).then(function (isConfirm) {
                     if (isConfirm) {
                         info.prueba.enviarPuntaje({
-                            estado: "completed1",
+                            estado: "completed2",
                             movFallidos: info.movesW,
                             movAcertados: info.movesR,
                             duracionTotal: info.total,
                             movTotales: info.resultados
-                        }, "hanoi");
-                        info.navParent.pop();
-
+                        }, "hanoi2");
+                        info.navParent.setRoot(HomePage);
                     }
-
                 });
             }
 
         });
     };
-
-
     setTimer() {
         info.now = 0;
-        info.total=0;
+        info.total = 0;
         info.t = setInterval(function () {
             info.now = info.now + 100;
             info.total = info.total + 100;
         }, 100);
     };
 
-
-    /* setTimer() {
-
-          //this.navCtrl.push(HomePage);
-          var now5 = new Date();
-          // Set the date we're counting down to
-          now5.setSeconds(now5.getSeconds() + 120);
-          var distance: number;
-          // Update the count down every 1 second
-          info.x = setInterval(function () {
-               // Get todays date and time
-               var now = new Date().getTime();
-               // Find the distance between now an the count down date
-               distance = now5.getTime() - now;
-               // Time calculations for days, hours, minutes and seconds
-               var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-               var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-               // Display the result in the element with id="demo"
-               $('#demo').text(minutes + ":" + seconds);
-               // If the count down is finished, write some text
-               console.log(distance);
-               if (distance < 0) {
-                    info.y = true;
-                    info.stop();
-                    swal({
-                         allowEscapeKey: false,
-                         allowOutsideClick: false,
-                         title: 'Se acabo el tiempo',
-                         type: 'error',
-                         confirmButtonColor: '#f67b18',
-                         confirmButtonText: 'Siguiente Prueba'
-                    }).then(function () {
-                         info.prueba.enviarPuntaje({
-                              estado: "completed",
-                              movFallidos: info.movesW,
-                              movTotales: info.movesR + info.movesW
-                         }, "hanoi");
-
-                         info.navParent.setRoot(HomePage);
-
-                    });
-               }
-          }, 1000);
-     };*/
-
-
     // Init Game
     initGame(tower) {
+        this.$canves = $('#canves');
+        this.$tower = this.$canves.find('.tower');
         this.$tower.html('');
-        for (var i = 1; i <= this.disksNum; i++) {
+        for (var i = 1; i <= 4; i++) {
             $("#tower-" + tower).prepend($('<li class="disk disk-' + i + '" data-value="' + i + '"></li>'));
         }
     };
+
 }

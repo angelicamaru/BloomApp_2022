@@ -49,7 +49,7 @@ export class ExplainPage {
                res = result.toString();
                if (res === un) {
                     this.pruebaProvider.cambiarEstado("onProgress", this.ides);
-                    this.navCtrl.push('Juego_' + this.ides + 'Page');
+                   this.navCtrl.push('Juego_' + this.ides + 'Page');
                } else {
                     swal({
                          allowEscapeKey: false,

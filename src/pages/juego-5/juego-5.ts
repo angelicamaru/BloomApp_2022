@@ -35,13 +35,16 @@ class DeviceInfo4 {
      res = [];
      numero = 0;
      y = 0;
+    t: any;
+    total=0;
      x: any;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
           info.prueba.enviarPuntaje({
                estado: "completed",
-               movTotales: info.x
+               movTotales: info.x,
+              duracionTotal: info.total
           }, "raven");
           info.nav.setRoot(HomePage);
      }
@@ -78,8 +81,13 @@ export class Juego_5Page {
                return false;
           }
      }
+    ionViewDidLeave() {
+
+        clearInterval(info.t);
+    }
 
      ionViewDidLoad() {
+         this.setTimer();
           $('#juego5').attr("style", "display:none");
 
           info.res = ["color4", "color5", "color1", "color2", "color6", "color3", "color6", "color2", "color1", "color3", "color5", "color4",
@@ -131,7 +139,6 @@ export class Juego_5Page {
                $('#figuraTest15').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
 
 
-               console.log(info.x);
           });
 
 
@@ -164,17 +171,16 @@ export class Juego_5Page {
                     $('#figuraTest14').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
                     $('#figuraTest15').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
                }
-               console.log(info.x);
           });
-
-
-
-
-
-
-
 
 
      }
 
+
+
+    setTimer() {
+        info.t = setInterval(function () {
+            info.total= info.total+100;
+        }, 100);
+    };
 }

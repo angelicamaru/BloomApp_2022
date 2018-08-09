@@ -35,13 +35,21 @@ class DeviceInfo5 {
      numero = 0;
      y = false;
      x: any;
+    now=0;
+    total=0;
+    bien=0;
+    mal=0;
+    t:any;
      x2: any;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
           info.prueba.enviarPuntaje({
                estado: "completed",
-               movTotales: info.x
+               movTotales: info.x,
+              duracionToral: info.total,
+            correctas: info.bien,
+            errores: info.mal
           }, "wisconsin");
           info.nav.setRoot(HomePage);
      }
@@ -60,7 +68,9 @@ export class Juego_4Page {
      constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
-
+info.bien=0;
+         info.mal=0;
+         info.total=0;
           info.numero = 0;
           info.y = false;
           info.x = [];
@@ -81,7 +91,14 @@ export class Juego_4Page {
           }
      }
 
+     ionViewDidLeave() {
+
+        clearInterval(info.t);
+    }
+
+
      ionViewDidLoad() {
+         this.setTimer();
           $('#y').attr("style", "display:none");
           $('#x').attr("style", "display:none");
           info.enun = ["redcross3", "redcross1", "redtriangle2", "redcross4", "bluetriangle1", "bluecross1", "yellowcross3", "redstar3", "bluecross3", "bluecircle1", "redcircle3",
@@ -117,18 +134,22 @@ export class Juego_4Page {
                var ide = $(this).attr('id');
 
                if (ide == info.res[info.numero]) {
-                    info.x[info.numero] = "1";
-                    console.log(info.x);
+                    info.x[info.numero] = ["1", info.now];
+
+                    info.bien++;
                     $('#x').attr("style", "display:inline-flex");
                     setTimeout(function () {
                          $('#x').attr("style", "display:none");
+                        info.now = 0;
                     }, 500);
                } else {
-                    info.x[info.numero] = "0";
-                    console.log(info.x);
+                    info.x[info.numero] = ["0", info.now];
+
+                   info.mal++;
                     $('#y').attr("style", "display:inline-flex");
                     setTimeout(function () {
                          $('#y').attr("style", "display:none");
+                         info.now = 0;
                     }, 500);
 
                }
@@ -149,5 +170,13 @@ export class Juego_4Page {
                }
           });
      }
+
+     setTimer() {
+        info.now = 0;
+        info.t = setInterval(function () {
+            info.now = info.now + 100;
+            info.total= info.total+100;
+        }, 100);
+    };
 
 }

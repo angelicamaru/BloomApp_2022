@@ -1,25 +1,25 @@
 import {
-     Component
+    Component
 } from '@angular/core';
 import {
-     IonicPage,
-     NavController,
-     NavParams
+    IonicPage,
+    NavController,
+    NavParams
 } from 'ionic-angular';
 import * as $ from 'jquery';
 //import * as swal from 'sweetalert';
 import swal, {
-     SweetAlertOptions
+    SweetAlertOptions
 } from 'sweetalert2';
 import {
-     HomePage
+    HomePage
 } from '../home/home';
 
 import {
-     PruebaProvider
+    PruebaProvider
 } from '../../providers/prueba/prueba';
 import {
-     AlertController
+    AlertController
 } from 'ionic-angular';
 
 /**
@@ -30,22 +30,30 @@ import {
  */
 
 class DeviceInfo2 {
-     enun = [];
-     res = [];
-     numero = 0;
-     y: any;
-     c = 0;
-     cero = 0;
-     ya = false;
-     prueba: PruebaProvider;
-     nav: NavController;
-     juju() {
-          info.prueba.enviarPuntaje({
-               estado: "completed",
-               movTotales: info.y
-          }, "token");
-          info.nav.setRoot(HomePage);
-     }
+    enun = [];
+    res = [];
+    numero = 0;
+    y: any;
+    c = 0;
+    t: any;
+    total = 0;
+    bien = 0;
+    mal = 0;
+    now = 0;
+    cero = 0;
+    ya = false;
+    prueba: PruebaProvider;
+    nav: NavController;
+    juju() {
+        info.prueba.enviarPuntaje({
+            estado: "completed",
+            movTotales: info.y,
+            duracionTotal: info.total,
+            correctas: info.bien,
+            errores: info.mal
+        }, "token");
+        info.nav.setRoot(HomePage);
+    }
 
 }
 
@@ -55,42 +63,48 @@ let info = new DeviceInfo2();
 
 @IonicPage()
 @Component({
-     selector: 'page-juego-3',
-     templateUrl: 'juego-3.html',
+    selector: 'page-juego-3',
+    templateUrl: 'juego-3.html',
 })
 export class Juego_3Page {
 
-     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
-          info.numero = 0;
-          info.prueba = this.pruebaProvider;
-          info.nav = this.navCtrl;
-          info.y = [];
-          info.c = 0;
+    constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private alertCtrl: AlertController) {
+        info.numero = 0;
+        info.bien = 0;
+        info.mal = 0;
+        info.prueba = this.pruebaProvider;
+        info.nav = this.navCtrl;
+        info.y = [];
+        info.c = 0;
 
-     }
+    }
 
-     ionViewCanLeave() {
-          if (info.numero == 36) {
-               return true;
+    ionViewCanLeave() {
+        if (info.numero == 36) {
+            return true;
 
-          } else {
-               let alert = this.alertCtrl.create({
-                    title: 'Prueba en proceso',
-                    subTitle: 'Por favor, termine la prueba',
-                    buttons: ['Ok']
-               });
-               alert.present();
+        } else {
+            let alert = this.alertCtrl.create({
+                title: 'Prueba en proceso',
+                subTitle: 'Por favor, termine la prueba',
+                buttons: ['Ok']
+            });
+            alert.present();
 
-               return false;
-          }
-     }
+            return false;
+        }
+    }
+    ionViewDidLeave() {
+
+        clearInterval(info.t);
+    }
 
 
 
+    ionViewDidLoad() {
+        this.setTimer();
 
-     ionViewDidLoad() {
-
-          info.enun = ["Toque un círculo",
+        info.enun = ["Toque un círculo",
                        "Toque un cuadrado",
                        "Toque una ficha amarilla",
                        "Toque una roja",
@@ -132,9 +146,10 @@ export class Juego_3Page {
                        "Toque el círculo rojo, ¡No!, el cuadrado blanco",
                        "En lugar del cuadrado blanco, toque el círculo amarillo"
                       ];
-          $('#page-heading1').text(info.enun[info.numero]);
+        $('#page-heading1').text(info.enun[info.numero]);
+        info.now = 0;
 
-          info.res = [["t15", "t17", "t11", "t12", "t14", "t13", "t16", "t18", "t19", "t20"],
+        info.res = [["t15", "t17", "t11", "t12", "t14", "t13", "t16", "t18", "t19", "t20"],
                       ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10"],
                       ["t13", "t5", "t18", "t6"],
                       ["t11", "t2", "t19", "t8"],
@@ -174,150 +189,167 @@ export class Juego_3Page {
                       ["t13"]
                      ];
 
-          $('#gridToken').on('click', '.tokenBot .figure', function () {
+        $('#gridToken').on('click', '.tokenBot .figure', function () {
 
-               var ide = $(this).attr('id');
-               var len = info.res[info.numero].length;
-               var si = false;
+            var ide = $(this).attr('id');
+            var len = info.res[info.numero].length;
+            var si = false;
 
-               if (info.numero > 27) {
-                    for (var i = 0; i < len; i++) {
-                         if (ide == info.res[info.numero][i]) {
-                              info.y[info.numero] = "1";
-                              console.log("uno");
-                         } else {
-                              console.log("cero");
-                              info.y[info.numero] = "0";
-                         }
+            if (info.numero > 27) {
+                for (var i = 0; i < len; i++) {
+                    if (ide == info.res[info.numero][i]) {
+                        info.y[info.numero] = ["1", info.now, ide];
+                        info.bien++;
+                        console.log("uno");
+                    } else {
+                        console.log("cero");
+                        info.y[info.numero] = ["0", info.now, ide];
+                        info.mal++;
+                    }
+                }
+                info.numero++;
+                $('#page-heading1').text(info.enun[info.numero]);
+                info.now = 0;
+            }
+
+            if (info.numero >= 19 && info.numero < 28) {
+                if (ide == info.res[info.numero][info.c]) {
+                    si = true;
+                    info.c++;
+                    console.log(info.c);
+                } else {
+                    info.y[info.numero] = ["0", info.now, ide];
+                    info.mal++;
+                    console.log("cero");
+                    info.c = 0;
+                    info.numero++;
+                    $('#page-heading1').text(info.enun[info.numero]);
+                }
+                if (info.c == 2) {
+                    info.c = 0;
+                    info.y[info.numero] = ["1", info.now, ide];
+                    info.bien++;
+                    console.log("uno");
+                    info.numero++;
+                    $('#page-heading1').text(info.enun[info.numero]);
+                }
+                info.now = 0;
+                if (info.numero < 23) {
+                    $('.containTokenPeque').attr("style", "display:absolute");
+                } else {
+                    $('.containTokenPeque').attr("style", "display:none");
+                }
+            }
+
+
+            if (info.numero > 14 && info.numero < 19) {
+
+                if (ide == info.res[info.numero][info.c]) {
+                    si = true;
+                    info.c++;
+                    console.log(info.c + " bien");
+                } else {
+                    info.cero++;
+                    console.log("mal" + info.cero);
+
+                }
+
+                if (info.c == 2) {
+
+                    info.c = 0;
+                    if (info.cero == 0) {
+
+                        info.y[info.numero] = ["1", info.now, ide];
+                        info.bien++;
+                        console.log("uno");
+                    } else if (info.cero == 1) {
+                        info.cero = 0;
+                        info.y[info.numero] = ["0.5", info.now, ide];
+                        console.log("0.5");
+                    } else {
+                        info.cero = 0;
+                        info.y[info.numero] = ["0", info.now, ide];
+                        info.mal++;
+                        console.log("cero");
                     }
                     info.numero++;
                     $('#page-heading1').text(info.enun[info.numero]);
-               }
+                    info.now = 0;
+                }
+                if (info.numero == 19) {
+                    $('.containTokenPeque').attr("style", "display:absolute");
+                }
 
-               if (info.numero >= 19 && info.numero < 28) {
-                    if (ide == info.res[info.numero][info.c]) {
-                         si = true;
-                         info.c++;
-                         console.log(info.c);
-                    } else {
-                         info.y[info.numero] = "0";
-                         console.log("cero");
-                         info.c = 0;
-                         info.numero++;
-                         $('#page-heading1').text(info.enun[info.numero]);
+            }
+            if (info.numero <= 14) {
+
+                for (var i = 0; i < len; i++) {
+                    if (ide == info.res[info.numero][i]) {
+                        si = true;
                     }
-                    if (info.c == 2) {
-                         info.c = 0;
-                         info.y[info.numero] = "1";
-                         console.log("uno");
-                         info.numero++;
-                         $('#page-heading1').text(info.enun[info.numero]);
-                    }
+                }
+                if (!si) {
+                    info.c++;
+                } else {
+                    if (info.c == 0) {
+                        info.y[info.numero] = ["1", info.now, ide];
+                        info.bien++;
 
-                    if (info.numero < 23) {
-                         $('.containTokenPeque').attr("style", "display:absolute");
-                    } else {
-                         $('.containTokenPeque').attr("style", "display:none");
-                    }
-               }
-
-
-               if (info.numero > 14 && info.numero < 19) {
-
-                    if (ide == info.res[info.numero][info.c]) {
-                         si = true;
-                         info.c++;
-                         console.log(info.c + " bien");
-                    } else {
-                         info.cero++;
-                         console.log("mal" + info.cero);
-
-                    }
-
-                    if (info.c == 2) {
-
-                         info.c = 0;
-                         if (info.cero == 0) {
-
-                              info.y[info.numero] = "1";
-                              console.log("uno");
-                         } else if (info.cero == 1) {
-                              info.cero = 0;
-                              info.y[info.numero] = "0.5";
-                              console.log("0.5");
-                         } else {
-                              info.cero = 0;
-                              info.y[info.numero] = "0";
-                              console.log("cero");
-                         }
-                         info.numero++;
-                         $('#page-heading1').text(info.enun[info.numero]);
-                    }
-                    if (info.numero == 19) {
-                         $('.containTokenPeque').attr("style", "display:absolute");
-                    }
-
-               }
-               if (info.numero <= 14) {
-
-                    for (var i = 0; i < len; i++) {
-                         if (ide == info.res[info.numero][i]) {
-                              si = true;
-                         }
-                    }
-                    if (!si) {
-                         info.c++;
-                    } else {
-                         if (info.c == 0) {
-                              console.log("uno");
-                              info.y[info.numero] = "1";
-
-                              info.numero++;
-                              $('#page-heading1').text(info.enun[info.numero]);
-                         } else {
-                              if (info.c == 1) {
-                                   info.y[info.numero] = "0.5";
-                                   console.log("0.5");
-                                   info.numero++;
-                                   $('#page-heading1').text(info.enun[info.numero]);
-                                   info.c = 0;
-                              } else {
-                                   info.y[info.numero] = "0";
-                                   info.c = 0;
-                                   console.log("cero");
-                                   info.numero++;
-                                   $('#page-heading1').text(info.enun[info.numero]);
-                              }
-                         }
-                    }
-                    if (info.numero < 7 || info.numero > 10) {
-
-                         $('.containTokenPeque').attr("style", "display:absolute");
+                        info.numero++;
+                        $('#page-heading1').text(info.enun[info.numero]);
 
                     } else {
-
-                         $('.containTokenPeque').attr("style", "display:none");
+                        if (info.c == 1) {
+                            info.y[info.numero] = ["0.5", info.now, ide];
+                            console.log("0.5");
+                            info.numero++;
+                            $('#page-heading1').text(info.enun[info.numero]);
+                            info.c = 0;
+                        } else {
+                            info.y[info.numero] = ["0", info.now, ide];
+                            info.mal++;
+                            info.c = 0;
+                            console.log("cero");
+                            info.numero++;
+                            $('#page-heading1').text(info.enun[info.numero]);
+                        }
                     }
-                    if (info.numero == 15) {
-                         $('.containTokenPeque').attr("style", "display:none");
-                    }
-               }
+                    info.now = 0;
+                }
+                if (info.numero < 7 || info.numero > 10) {
 
-               console.log(info.numero);
-               if (info.numero == 36) {
-                    swal({
-                         allowEscapeKey: false,
-                         allowOutsideClick: false,
-                         title: 'Felicidades, completaste la prueba!',
-                         type: 'success',
-                         confirmButtonColor: '#f67b18',
-                         confirmButtonText: 'Siguiente Prueba'
-                    }).then(info.juju);
-               }
-          });
+                    $('.containTokenPeque').attr("style", "display:absolute");
 
-     }
+                } else {
 
+                    $('.containTokenPeque').attr("style", "display:none");
+                }
+                if (info.numero == 15) {
+                    $('.containTokenPeque').attr("style", "display:none");
+                }
+            }
+
+            console.log(info.numero);
+            if (info.numero == 36) {
+                swal({
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    title: 'Felicidades, completaste la prueba!',
+                    type: 'success',
+                    confirmButtonColor: '#f67b18',
+                    confirmButtonText: 'Siguiente Prueba'
+                }).then(info.juju);
+            }
+        });
+
+    }
+    setTimer() {
+        info.now = 0;
+        info.t = setInterval(function () {
+            info.now = info.now + 100;
+            info.total = info.total + 100;
+        }, 100);
+    };
 
 
 }
