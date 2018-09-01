@@ -22,12 +22,19 @@ class DeviceInfo4 {
      res = [];
      numero = 0;
      y = 0;
+     t: any;
+    total=0;
+    bien=0;
+    mal=0;
      x: any;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
           info.prueba.enviarEntrenamiento({
-               movTotales: info.x
+               movTotales: info.x,
+              duracionTotal: info.total,
+              correctas: info.bien,
+              errores: info.mal
           }, "raven", info.y+"");
           info.nav.pop();
      }
@@ -49,9 +56,13 @@ export class Juego_5TrainPage {
           info.x = [];
 
   }
+        ionViewDidLeave() {
+
+        clearInterval(info.t);
+    }
 
   ionViewDidLoad() {
-
+this.setTimer();
           $('#juego5').attr("style", "display:none");
 
 
@@ -67,11 +78,11 @@ export class Juego_5TrainPage {
 
                var ide = $(this).attr('id');
                if (ide === "color5") {
-                    console.log("uno"+ide);
                     info.x[0] = "1";
+                   info.bien++;
                } else {
-                    console.log("cero"+ide);
                     info.x[0] = "0";
+                   info.mal++;
                }
                info.numero++;
                  if (info.numero == 3) {
@@ -87,4 +98,9 @@ export class Juego_5TrainPage {
                 }
           });
   }
+       setTimer() {
+        info.t = setInterval(function () {
+            info.total= info.total+100;
+        }, 100);
+    };
 }

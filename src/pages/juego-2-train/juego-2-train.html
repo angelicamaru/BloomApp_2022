@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-     <ion-navbar >
-          <ion-title>Entrenamiento</ion-title>
-     </ion-navbar>
+    <ion-navbar>
+        <ion-title>Entrenamiento</ion-title>
+    </ion-navbar>
 
 
 </ion-header>
@@ -16,18 +16,32 @@
 
 <ion-content padding>
 
-     <body>
-          <div id="juego2">
-               <p class="text"> Presiona los discos para moverlos y llévalos hasta el soporte de la derecha. </p> <p class="text">Recuerda que no puedes poner un disco sobre otro disco más pequeño.</p>
-          </div>
-          <div id="y">
-               <img src="assets/imgs/mal.png">
-          </div>
-          <div id="canves">
-               <ul class="tower" id="tower-1"></ul>
-               <ul class="tower" id="tower-2"></ul>
-               <ul class="tower" id="tower-3"></ul>
-          </div>
+    <body>
+        <div id="juego2">
+            <h6 class="text"> Presiona los discos para moverlos del soporte "a" al soporte "c". </h6>
+            <p class="text">Recuerda que:<br> -Sólo se puede mover una ficha a la vez.<br>-No puede colocar una ficha grande sobre una más pequeña.<br>-Siempre que se tome una ficha ésta tiene que ser puesta en una de las barras.</p>
+        </div>
+        <div id="y">
+            <img src="assets/imgs/mal.png">
+        </div>
+        <div id="canves">
+            <ul class="tower" id="tower-1"></ul>
+            <ul class="tower" id="tower-2"></ul>
+            <ul class="tower" id="tower-3"></ul>
 
-     </body>
+        </div>
+        <div id="canves2">
+
+            <ul class="towerID">
+                <p>a</p>
+            </ul>
+            <ul class="towerID">
+                <p>b</p>
+            </ul>
+            <ul class="towerID">
+                <p>c</p>
+            </ul>
+        </div>
+
+    </body>
 </ion-content>

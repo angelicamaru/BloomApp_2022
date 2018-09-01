@@ -95,6 +95,20 @@ export class Juego_2Page {
         info.x = null;
     }
     ionViewDidLoad() {
+        swal({
+            text: "¿Había realizado esta prueba/ejercicio antes?",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, ya la he realizado',
+            cancelButtonText: 'No, no la he realizado'
+        }).then((result) => {
+            if (result.value) {
+                info.prueba.enviarAnteriormente("hanoi", "si");
+            } else {
+                info.prueba.enviarAnteriormente("hanoi", "no");
+            }
+        })
         this.holi();
     };
     ionViewWillEnter() {
@@ -175,7 +189,7 @@ export class Juego_2Page {
 
     setTimer() {
         info.now = 0;
-        info.total=0;
+        info.total = 0;
         info.t = setInterval(function () {
             info.now = info.now + 100;
             info.total = info.total + 100;

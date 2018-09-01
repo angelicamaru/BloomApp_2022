@@ -38,12 +38,14 @@ page-juego-2 {
     }
 
     body {
-        @extend %reset;
-        @include dimensions($width: 100%);
-        display: flex;
-        justify-content: center;
+         justify-content: center;
         align-items: center;
-        overflow: hidden;
+        width: 90%;
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        text-align: justify;
     }
 
     #canves {
@@ -53,30 +55,15 @@ page-juego-2 {
         justify-content: center;
         align-items: flex-end;
         position: relative;
-        #score-panel {
-            @include dimensions($width: 120px, $height: 53px);
-            @extend %reset;
-            position: absolute;
-            top: 0px;
-            left: 50%;
-            color: white;
-            background-color: #005C86;
-            transform: translateX(-50%);
-            font-size: 23px;
-            border-radius: 7px;
-            text-align: center;
-            li {
-                list-style: none;
-                display: inline-block;
-                &:last-child {
-                    font-family: 'Coda', cursive;
-                    display: block;
-                    font-size: 7px;
-                    line-height: 1;
-                }
-            }
-        }
     }
+        #canves2 {
+	@include dimensions($width: 550px, $height:110px);
+	display: flex;
+	padding: 0;
+	justify-content: center;
+	align-items: flex-start;
+	position: relative;
+}
 
     .restart {
         cursor: pointer;
@@ -114,7 +101,18 @@ page-juego-2 {
             border-radius: 30px;
         }
     }
+.towerID {
 
+	position: relative;
+    font-size: 20px;
+    font-weight: 600;
+	display: flex;
+	text-align: center;
+	padding: 0;
+	margin: 0 90px 0 75px;
+	flex-direction: column;
+	align-items: center;
+}
     .disk {
         list-style: none;
         height: 21px;

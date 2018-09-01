@@ -94,6 +94,24 @@ export class Juego_1Page {
     }
 
     ionViewDidLoad() {
+
+        swal({
+            text: "¿Había realizado esta prueba/ejercicio antes?",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, ya la he realizado',
+            cancelButtonText: 'No, no la he realizado'
+        }).then((result) => {
+            if (result.value) {
+                info.prueba.enviarAnteriormente("stroop", "si");
+            } else {
+                info.prueba.enviarAnteriormente("stroop", "no");
+            }
+        })
+
+
+
         this.setTimer();
         $('#y').attr("style", "display:none");
         $('#x').attr("style", "display:none");

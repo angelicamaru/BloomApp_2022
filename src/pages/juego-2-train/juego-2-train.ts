@@ -33,6 +33,10 @@ class DeviceInfo {
      prueba: PruebaProvider;
      y: any;
      x: any;
+    t:any;
+      now = 0;
+    total = 0;
+    resultados: any;
      stop() {
           clearInterval(info.x);
           info.x = null;
@@ -62,10 +66,11 @@ export class Juego_2TrainPage {
           info.navParent = this.navCtrl;
           info.movesR = 0;
           info.movesW = 0;
+         info.resultados=[];
      };
      ionViewDidLeave() {
 
-          clearInterval(info.x);
+          clearInterval(info.t);
           info.x = null;
      }
      ionViewDidLoad() {
@@ -75,6 +80,7 @@ export class Juego_2TrainPage {
      holi() {
 
           this.initGame(1);
+         this.setTimer();
           var holding = [];
           var moves = 0;
           var countW = 0;
@@ -91,9 +97,14 @@ export class Juego_2TrainPage {
                          } else if (topDiskValue === undefined || topDiskValue > holding[0]) {
                               $($holdingDisk).remove();
                               $(this).append($('<li class="disk disk-' + holding[0] + '" data-value="' + holding[0] + '"></li>'));
-                              moves++;
+                               moves++;
+                       info.resultados[moves + countW] = ["1", info.now];
+                        info.now = 0;
                          } else {
                               countW++;
+                             countW++;
+                      info.resultados[moves + countW] = ["0", info.now];
+                        info.now = 0;
                               $('#y').attr("style", "display:inline-flex");
                               setTimeout(function () {
                                    $('#y').attr("style", "display:none");
@@ -119,8 +130,10 @@ export class Juego_2TrainPage {
                          if (isConfirm) {
 
                               info.prueba.enviarEntrenamiento({
-                                   movFallidos: info.movesW,
-                                   movTotales: info.movesR + info.movesW
+                                  movFallidos: info.movesW,
+                            movAcertados: info.movesR,
+                            duracionTotal: info.total,
+                            movTotales: info.resultados
                               }, "hanoi", "1");
                               info.navParent.pop();
                          }
@@ -132,7 +145,14 @@ export class Juego_2TrainPage {
           });
      };
 
-
+ setTimer() {
+        info.now = 0;
+        info.total=0;
+        info.t = setInterval(function () {
+            info.now = info.now + 100;
+            info.total = info.total + 100;
+        }, 100);
+    };
 
 
      // Init Game

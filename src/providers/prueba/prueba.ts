@@ -1,8 +1,8 @@
 import {
-     HttpClient
+    HttpClient
 } from '@angular/common/http';
 import {
-     Injectable
+    Injectable
 } from '@angular/core';
 import firebase from 'firebase';
 
@@ -16,40 +16,44 @@ import firebase from 'firebase';
 @Injectable()
 export class PruebaProvider {
 
-     constructor(public http: HttpClient) {
-          console.log('Hello PruebaProvider Provider');
-     }
-     enviarPuntaje(puntaje: any, prueba: string): Promise < any > {
-          var uid = firebase.auth().currentUser.uid;
-          return firebase.database().ref(`/usuarios/${uid}/${prueba}`).update(puntaje);
-     }
-     enviarEntrenamiento(puntaje: any, prueba: string, numero: string): Promise < any > {
-          var uid = firebase.auth().currentUser.uid;
-          return firebase.database().ref(`/usuarios/${uid}/${prueba}/entrenamiento${numero}`).update(puntaje);
-     }
+    constructor(public http: HttpClient) {
+        console.log('Hello PruebaProvider Provider');
+    }
+    enviarPuntaje(puntaje: any, prueba: string): Promise < any > {
+        var uid = firebase.auth().currentUser.uid;
+        return firebase.database().ref(`/usuarios/${uid}/${prueba}`).update(puntaje);
+    }
+    enviarAnteriormente(prueba: string, anteriormente: string): Promise < any > {
+        var uid = firebase.auth().currentUser.uid;
+        return firebase.database().ref(`/usuarios/${uid}/${prueba}/anteriormente`).set(anteriormente);
+    }
+    enviarEntrenamiento(puntaje: any, prueba: string, numero: string): Promise < any > {
+        var uid = firebase.auth().currentUser.uid;
+        return firebase.database().ref(`/usuarios/${uid}/${prueba}/entrenamiento${numero}`).update(puntaje);
+    }
 
-     ponerEstado(prueba: string): Promise < any > {
-          var uid = firebase.auth().currentUser.uid;
-          return firebase.database().ref(`/usuarios/${uid}/${prueba}/estado`).set("undone");
-     }
-     cambiarEstado(estado: string, prueba: number): Promise < any > {
-          var arr = ["stroop", "hanoi", "token", "wisconsin", "raven"];
-          var prueba2 = arr[prueba - 1];
-          var uid = firebase.auth().currentUser.uid;
-          return firebase.database().ref(`/usuarios/${uid}/${prueba2}`).update({
-               estado: estado
-          });
-     }
-     isUndone(prueba: number): Promise < String > {
-          var arr = ["stroop", "hanoi", "token", "wisconsin", "raven"];
-          var prueba2 = arr[prueba - 1];
-          var uid = firebase.auth().currentUser.uid;
-          var estado;
-          return firebase.database().ref(`/usuarios/${uid}/${prueba2}`).once("value", function (snapshot) {
-               estado = snapshot.val().estado;
-          }).then((response) => {
-               return estado;
-          });
-     }
+    ponerEstado(prueba: string): Promise < any > {
+        var uid = firebase.auth().currentUser.uid;
+        return firebase.database().ref(`/usuarios/${uid}/${prueba}/estado`).set("undone");
+    }
+    cambiarEstado(estado: string, prueba: number): Promise < any > {
+        var arr = ["stroop", "hanoi", "token", "wisconsin", "raven"];
+        var prueba2 = arr[prueba - 1];
+        var uid = firebase.auth().currentUser.uid;
+        return firebase.database().ref(`/usuarios/${uid}/${prueba2}`).update({
+            estado: estado
+        });
+    }
+    isUndone(prueba: number): Promise < String > {
+        var arr = ["stroop", "hanoi", "token", "wisconsin", "raven"];
+        var prueba2 = arr[prueba - 1];
+        var uid = firebase.auth().currentUser.uid;
+        var estado;
+        return firebase.database().ref(`/usuarios/${uid}/${prueba2}`).once("value", function (snapshot) {
+            estado = snapshot.val().estado;
+        }).then((response) => {
+            return estado;
+        });
+    }
 
 }

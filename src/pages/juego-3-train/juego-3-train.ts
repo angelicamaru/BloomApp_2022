@@ -30,12 +30,21 @@ class DeviceInfo2 {
      x = 0;
      c = 0;
      z:any;
+     t: any;
+    total = 0;
+    bien = 0;
+    mal = 0;
+    now = 0;
+    cero = 0;
      prueba: PruebaProvider;
      nav: NavController;
      juju() {
 
           info.prueba.enviarEntrenamiento({
-               movTotales: info.z
+               movTotales: info.z,
+                duracionTotal: info.total,
+            correctas: info.bien,
+            errores: info.mal
           }, "token", info.x + "");
           if (info.y > 4) {
                info.nav.pop();
@@ -56,6 +65,8 @@ let info = new DeviceInfo2();
 export class Juego_3TrainPage {
 
      constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
+              info.bien = 0;
+        info.mal = 0;
           info.numero = 0;
           info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
@@ -64,8 +75,14 @@ export class Juego_3TrainPage {
           info.c = 0;
 
      }
+      ionViewDidLeave() {
+
+        clearInterval(info.t);
+    }
+
 
      ionViewDidLoad() {
+         this.setTimer();
           info.enun = [
                        "Toque un cuadrado", //0 grande
                        "Toque el circulo azul", //8 pqw
@@ -97,17 +114,20 @@ export class Juego_3TrainPage {
                     for (var i = 0; i < len; i++) {
                          if (ide == info.res[info.numero][i]) {
                               info.y++;
-                              info.z[info.numero] = "1";
+                              info.z[info.numero] = ["1", info.now, ide];
+                                info.bien++;
                               info.numero++;
                               console.log("uno");
                               $('#page-heading1').text(info.enun[info.numero]);
 
                          } else {
 
-                              info.z[info.numero] = "0";
+                              info.z[info.numero] = ["0", info.now, ide];
+                             info.mal++;
                               console.log("cero");
                               info.numero++;
                               $('#page-heading1').text(info.enun[info.numero]);
+
                          }
                     }
 
@@ -120,17 +140,19 @@ export class Juego_3TrainPage {
                          console.log(info.c);
                     } else {
 
-                         info.z[info.numero] = "0";
+                         info.z[info.numero] =["0", info.now, ide];
                          console.log("cero");
+                        info.mal++;
                          info.c = 0;
                          info.numero++;
                          $('#page-heading1').text(info.enun[info.numero]);
                     }
 
                     if (info.c == 2) {
+                        info.bien++;
                          info.c = 0;
                          info.y++;
-                         info.z[info.numero] = "1";
+                         info.z[info.numero] =  ["1", info.now, ide];
                          console.log("uno");
                          info.numero++;
                          $('#page-heading1').text(info.enun[info.numero]);
@@ -149,16 +171,15 @@ export class Juego_3TrainPage {
                     } else {
                          if (info.c == 0) {
 
-                              info.z[info.numero] = "1";
+                              info.z[info.numero] = ["1", info.now, ide];
                               console.log("uno");
                               info.y++;
-
                               info.numero++;
                               $('#page-heading1').text(info.enun[info.numero]);
                          } else {
                               if (info.c == 1) {
 
-                                   info.z[info.numero] = "0.5";
+                                   info.z[info.numero] =  ["0.5", info.now, ide];
                                    console.log("0.5");
                                    info.numero++;
                                    $('#page-heading1').text(info.enun[info.numero]);
@@ -166,7 +187,7 @@ export class Juego_3TrainPage {
                               } else {
                                    info.c = 0;
 
-                                   info.z[info.numero] = "0";
+                                   info.z[info.numero] =   ["0", info.now, ide];
                                    console.log("cero");
                                    info.numero++;
                                    $('#page-heading1').text(info.enun[info.numero]);
@@ -208,7 +229,14 @@ export class Juego_3TrainPage {
                } else {
                     $('.containTokenPeque').attr("style", "display:none");
                }
+              info.now;
           });
      }
-
+    setTimer() {
+        info.now=0;
+        info.t = setInterval(function () {
+            info.now = info.now + 100;
+            info.total = info.total + 100;
+        }, 100);
+    };
 }

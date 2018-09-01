@@ -98,6 +98,7 @@ export class SignupPage {
                this.authProvider.signupUser(email, tipo, cargo, fecha, nombre, nivel, genero).then(user => {
                          this.loading.dismiss().then(() => {
                               this.pruebaProvider.ponerEstado("hanoi");
+         this.pruebaProvider.ponerEstado("hanoi2");
                               this.pruebaProvider.ponerEstado("stroop");
                               this.pruebaProvider.ponerEstado("raven");
                               this.pruebaProvider.ponerEstado("wisconsin");
