@@ -55,7 +55,8 @@ class DeviceInfo5 {
             movTotales: info.x,
             duracionTotal: info.total,
             correctas: info.bien,
-            errores: info.mal
+            errores: info.mal,
+            categorias: info.categorias
         }, "wisconsin");
         info.nav.setRoot(HomePage);
     }
@@ -80,7 +81,8 @@ export class Juego_4Page {
         info.numero = 0;
         info.y = false;
         info.x = [];
-    }
+        info.categorias=0;
+info.categoriasCon=0;    }
 
     ionViewCanLeave() {
         if (info.numero == 70) {
@@ -112,6 +114,8 @@ export class Juego_4Page {
             confirmButtonText: 'Sí, ya la he realizado',
             cancelButtonText: 'No, no la he realizado'
         }).then((result) => {
+            info.now = 0;
+            info.total=0;
             if (result.value) {
                 info.prueba.enviarAnteriormente("wisconsin", "si");
             } else {
@@ -163,7 +167,7 @@ export class Juego_4Page {
                     info.categoriasCon++;
                 } else if (info.cat[info.numero] == info.cat[info.numero - 1]) {
                     info.categoriasCon++;
-                    if (info.categoriasCon == 6) {
+                    if (info.categoriasCon == 8) {
                         info.categorias++;
 
                     info.categoriasCon = 0;
@@ -204,6 +208,7 @@ export class Juego_4Page {
 
             if (info.numero == 70) {
                 console.log("categorias " + info.categorias + " no Perse " + info.noPerse + " perse " + info.perseCon + " total " + info.mal);
+                clearInterval(info.t);
                 swal({
                     allowEscapeKey: false,
                     allowOutsideClick: false,

@@ -47,7 +47,10 @@ class DeviceInfo5 {
             correctas: info.bien,
             errores: info.mal
         }, "wisconsin", info.z + "");
-        if (info.x2 < 5) {} else {
+        if (info.x2 < 5) {
+        info.bien=0;
+        info.mal=0;
+        info.total=0;} else {
             info.nav.pop();
         }
     }
@@ -63,12 +66,16 @@ let info = new DeviceInfo5();
 export class Juego_4TrainPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider) {
+info.bien=0;
 
         info.prueba = this.pruebaProvider;
         info.nav = this.navCtrl;
         info.numero = 0;
         info.y = false;
         info.x = [];
+        info.bien=0;
+        info.mal=0;
+        info.total=0;
         info.x2 = 0;
     }
 

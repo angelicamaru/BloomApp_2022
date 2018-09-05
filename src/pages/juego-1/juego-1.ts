@@ -68,6 +68,7 @@ export class Juego_1Page {
         info.nav = this.navCtrl;
         info.numero = 0;
         info.x = [];
+        info.total=0;
         info.bien = 0;
         info.mal = 0;
 
@@ -103,6 +104,8 @@ export class Juego_1Page {
             confirmButtonText: 'Sí, ya la he realizado',
             cancelButtonText: 'No, no la he realizado'
         }).then((result) => {
+            info.now = 0;
+            info.total=0;
             if (result.value) {
                 info.prueba.enviarAnteriormente("stroop", "si");
             } else {
@@ -185,6 +188,7 @@ export class Juego_1Page {
             }
             info.numero++;
             if (info.numero == 30) {
+                clearInterval(info.t);
                 swal({
                     allowEscapeKey: false,
                     allowOutsideClick: false,

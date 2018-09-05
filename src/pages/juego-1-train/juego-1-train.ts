@@ -33,7 +33,7 @@ class DeviceInfo6 {
     numero = 0;
     x: any;
     y: any;
-    z: any;
+    z=0;
     t: any;
     total = 0;
     bien = 0;
@@ -50,6 +50,9 @@ class DeviceInfo6 {
         }, "stroop", info.z + "");
         if (info.y < 4) {
 
+        info.bien=0;
+        info.mal=0;
+        info.total=0;
             info.y = 0;
         } else {
 
@@ -73,7 +76,9 @@ export class Juego_1TrainPage {
         info.numero = 0;
         info.x = [];
         info.y = 0;
-        info.z = 0;
+        info.bien=0;
+        info.mal=0;
+        info.total=0;
     }
 
     ionViewDidLeave() {
@@ -83,6 +88,7 @@ export class Juego_1TrainPage {
 
 
     ionViewDidLoad() {
+
 
         this.setTimer();
         $('#y').attr("style", "display:none");
@@ -144,7 +150,7 @@ export class Juego_1TrainPage {
                     $('#color2').css("color", info.abajo[0][1]);
                     var texto = "¿La palabra de arriba: '" + info.arriba[info.numero][0] + "' está escrita con el nombre del color escrito abajo: '" + info.abajo[info.numero][0] + "' ?";
                     $('#texto').text(texto);
-                    info.z++;
+
                 } else {
                     swal({
                         allowEscapeKey: false,
@@ -156,6 +162,7 @@ export class Juego_1TrainPage {
                     }).then(info.juju);
                 }
 
+ info.z++;
             } else {
                 var texto2 = "¿La palabra de arriba: '" + info.arriba[info.numero][0] + "' está escrita con el nombre del color escrito abajo: '" + info.abajo[info.numero][0] + "' ?";
                 $('#texto').text(texto2);

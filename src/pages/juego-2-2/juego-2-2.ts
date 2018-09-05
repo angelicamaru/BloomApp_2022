@@ -63,6 +63,7 @@ export class Juego_2_2Page {
     constructor(public navCtrl: NavController, public navParams: NavParams, public pruebaProvider: PruebaProvider, private view: ViewController, private alertCtrl: AlertController) {
         info.resultados = [];
         info.y = false;
+        info.total=0;
         info.prueba = this.pruebaProvider;
         info.navParent = this.navCtrl;
         info.name = false;
@@ -139,6 +140,7 @@ export class Juego_2_2Page {
             info.movesW = countW;
 
             if (($('#tower-3')).children().length === 4) {
+                clearInterval(info.t);
                 info.stop;
                 info.y = true;
                 swal({

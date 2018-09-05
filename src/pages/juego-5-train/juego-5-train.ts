@@ -53,7 +53,10 @@ export class Juego_5TrainPage {
        info.prueba = this.pruebaProvider;
           info.nav = this.navCtrl;
           info.numero = 2;
+      info.bien=0;
+      info.mal=0;
           info.x = [];
+      info.total=0;
 
   }
         ionViewDidLeave() {

@@ -70,6 +70,7 @@ export class Juego_2Page {
         info.navParent = this.navCtrl;
         info.name = false;
         info.movesR = 0;
+        info.total=0;
         info.movesW = 0;
     };
     ionViewCanLeave() {
@@ -103,6 +104,8 @@ export class Juego_2Page {
             confirmButtonText: 'Sí, ya la he realizado',
             cancelButtonText: 'No, no la he realizado'
         }).then((result) => {
+            info.now = 0;
+            info.total=0;
             if (result.value) {
                 info.prueba.enviarAnteriormente("hanoi", "si");
             } else {
@@ -158,6 +161,7 @@ export class Juego_2Page {
             info.movesW = countW;
 
             if (($('#tower-3')).children().length === 3) {
+                clearInterval(info.t);
                 info.stop;
                 info.y = true;
                 swal({

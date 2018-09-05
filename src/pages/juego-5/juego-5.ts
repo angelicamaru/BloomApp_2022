@@ -69,6 +69,7 @@ export class Juego_5Page {
         info.nav = this.navCtrl;
         info.numero = 1;
         info.mal = 0;
+        info.total=0;
         info.bien = 0;
         info.x = [];
     }
@@ -101,6 +102,8 @@ export class Juego_5Page {
             confirmButtonText: 'Sí, ya la he realizado',
             cancelButtonText: 'No, no la he realizado'
         }).then((result) => {
+
+            info.total=0;
             if (result.value) {
                 info.prueba.enviarAnteriormente("raven", "si");
             } else {
@@ -141,6 +144,7 @@ export class Juego_5Page {
             }
             info.numero++;
             if (info.numero == 61) {
+                clearInterval(info.t);
                 swal({
                     allowEscapeKey: false,
                     allowOutsideClick: false,

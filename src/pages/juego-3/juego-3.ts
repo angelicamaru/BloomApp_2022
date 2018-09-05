@@ -72,6 +72,7 @@ export class Juego_3Page {
         info.numero = 0;
         info.bien = 0;
         info.mal = 0;
+        info.total=0;
         info.prueba = this.pruebaProvider;
         info.nav = this.navCtrl;
         info.y = [];
@@ -110,6 +111,8 @@ export class Juego_3Page {
             confirmButtonText: 'Sí, ya la he realizado',
             cancelButtonText: 'No, no la he realizado'
         }).then((result) => {
+            info.now = 0;
+            info.total=0;
             if (result.value) {
                 info.prueba.enviarAnteriormente("token", "si");
             } else {
@@ -345,6 +348,7 @@ export class Juego_3Page {
 
             console.log(info.numero);
             if (info.numero == 36) {
+                clearInterval(info.t);
                 swal({
                     allowEscapeKey: false,
                     allowOutsideClick: false,
