@@ -34,7 +34,7 @@ export class ExplainPage {
           this.ides = this.navParams.get('juego');
      }
      ionViewDidLoad() {
-          var links = ["assets/imgs/juegos1.jpg", "assets/imgs/juegos2.png", "assets/imgs/juegos3.png", "assets/imgs/juegos4.jpg", "assets/imgs/juegos5.jpg"];
+          var links = ["./assets/imgs/juegos-1.png", "./assets/imgs/juegos-2.png", "./assets/imgs/juegos-3.png", "./assets/imgs/juegos-4.png", "./assets/imgs/juegos-5.png"];
           var textos = [
                   "En este juego debe indicar si el color de la tinta de la palabra de arriba corresponde al nombre del color escrito abajo. \n En este caso la respuesta es no. Ya que la palabra de abajo dice AZUL y la palabra de arriba está con tinta de color VERDE.",
                   "El objetivo de este juego es trasladar los discos del soporte 'a' al soporte 'c' con la menor cantidad de movimientos posibles respetando las siguientes reglas: 1. Solo se puede mover un disco a la vez. \n 2. No se puede colocar un disco grande sobre otro disco más pequeño. Se debe colocar sobre uno más grande.", "Presione la figura que se le indique",
