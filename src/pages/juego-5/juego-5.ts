@@ -30,6 +30,14 @@ import {
  * Ionic pages and navigation.
  */
 
+/**
+    RAVEN
+    Las imagenes de las figuras estan cargadas en la tablet.
+    Existe un array de las respuestas correctas (info.res). Ese es el id del div de la imagen que debio tocar.
+    Existen 2 "tableros" uno que muestra 7 figuras (#juego4) y otro que muestra 9 (#juego5)
+
+*/
+
 class DeviceInfo4 {
     enun = [];
     res = [];
@@ -186,6 +194,9 @@ export class Juego_5Page {
             $('#figuraTest5').attr("src", 'assets/imgs/Raven/' + info.numero + '-07.png');
             $('#figuraTest6').attr("src", 'assets/imgs/Raven/' + info.numero + '-06.png');
             $('#figuraTest7').attr("src", 'assets/imgs/Raven/' + info.numero + '-05.png');
+
+            //aqui se realiza el cambio de tableros
+
             if (info.numero >= 25) {
                 $('#juego4').attr("style", "display:none");
                 $('#juego5').attr("style", "display:inline-flex");

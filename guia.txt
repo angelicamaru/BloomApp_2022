@@ -1,0 +1,39 @@
+Holis
+En esta guia encontrarás algunos detalles generales. 
+Antes que nada, me disculpo porque los nombres de los metodos y las variables son poco profesionales e intuitivos.
+
+    -En todas las pruebas existe un metodo setTimer() este incicializa un contador en 0 y cada 100 milisegundos agrega 100 unidades a ese contador. De esta manera se tienen tiempos en milisegundos. Cuando se realiza una jugada en una prueba, este movimiento se guarda con el tiempo y si fue acertado o no (dependiendo la prueba). Luego, se envian todos los resultados con el tiempo total de la prueba.
+    
+    -Todas las pruebas mientras se ejecutan van guardando los movimientos del usuario en un array, SOLO HASTA QUE EL USUARIO LE DE SIGUIENTE PRUEBA, se envia este array a firebase con tiempos totales y demas. 
+    
+    -En caso de falla de internet mientras se ejecuta la prueba, la tablet seguira su funcionamiento normal y los datos se guardaran localmente y luego se enviaran automaticamentae cuando vuelva la conexion. 
+    
+    -La explicacion de las pruebas es una unica clase para todas (explain). Dependiendo el id del div que selecciono el usuario en la pantalla principal, se muestra la foto correspondiente y el texto de explicacion. 
+    
+    -Los entrenamientos deben ser obligatorios. Estos funcionan iguales que las pruebas originales pero un poco mas cortas.
+    
+    -Para eventos de exposiciones o pruebas de la Aplicacion se generan versiones especiales. Estas por lo general deben tener numero de intentos ilimitados, no permitir que se haga logout, no permitir que se salga de la prueba, el entrenamiento es opcional, entre otros detalles. Asi que cuando se vaya a exportar una version real, revisar que todas estas caracteristicas esten funcionando correctamente.
+    
+    -Tuve problemas con las variables de clase, es decir variables que funcionaran en todos los metodos de toda la clase. Tambien que sirvieran especificamente dentro de un metodo onClick o .click(). Ya que dentro de este metodo no sirve el this.varbiable. Para esto, en todas las pruebas se crea otra clase llamada DeviceInfo# (el nombre es sacado del foro que copie y pegue xd). En esta nueva clase defino las variables que yo quiera (tambien metodos), y luego esa clase la meto en la variable info. En la clase de la prueba (juego#) puedo utilizar las variables de la otra clase sin problemas, simplemente llamandolas asi: info.variable 
+    
+    -El metodo juju() es el que se encarga de enviar todos los datos de la prueba a firebase. Y este solo se activa cuando el usuario le pone "siguiente prueba" en la ventanita que aparece.
+    
+    -En todas las pruebas lo primero que pregunta es que si ya realizo esa prueba antes con un sweetAlert.
+    
+    -TODA LA COMUNICACION CON FIREBASE RESPECTO A LAS PRUEBAS se maneja en un provider llamado prueba (/providers/prueba/prueba.ts) ahi se le dice lo que debe enviar y a que direccion de la base de datos. Cambia estados de las pruebas y tambien trae el estado de estas. Esta clase es util y por lo tanto se llama en varias ocasiones.
+    
+    -TODA LA COMUNICACION CON FIREBAS RESPCETO A LA AUTENTICACION se manjea en un provider llamado auth (/providers/auth/auth.ts). Ahi estan todos los procesos de autenticacion y envio de datos. 
+    
+ 
+    
+    -----------------------
+        juego-1 : Stroop Test
+        juego-2 : Hanoi 3 discos
+        juego-2-2 : Hanoi 4 discos
+        juego-3 : Token test
+        juego-4 : Wisconsin Test
+        juego-5 : Matrices de Raven
+        
+        *juego-#-train : el entrenamiento de la respectiva prueba
+    
+    

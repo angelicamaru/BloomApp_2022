@@ -12,6 +12,13 @@ import firebase from 'firebase';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+
+/*
+    Aqui se maneja todos los procesos de autenticacion con Firebase.
+    En Firebase se configura la autenticacion con email y contraseña.
+    El email de todos los usuarios es: <cedula>@bloom.com
+    La contraseña de todos los usuarios es: 123456
+*/
 @Injectable()
 export class AuthProvider {
 
@@ -52,7 +59,7 @@ export class AuthProvider {
                });
      }
 
-     logoutUser(): Promise < void > {
+     logoutUser():Promise <any> {
           const userId: string = firebase.auth().currentUser.uid;
           firebase.database().ref(`/usuarios/${userId}`).off();
           return firebase.auth().signOut();
